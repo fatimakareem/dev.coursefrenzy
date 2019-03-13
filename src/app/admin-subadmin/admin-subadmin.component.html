@@ -1,0 +1,53 @@
+<!--<div id="wrapper" class="container">-->
+  <!--<section class="section bgw">-->
+    <!--<div class="container">-->
+
+      <!--<div class="contact_form">-->
+        <!--<div id="message"></div>-->
+        <!--<form (ngSubmit)="!usernameFormControl.hasError('required') && !usernameFormControl.hasError('pattern') &&-->
+              <!--!emailFormControl.hasError('required') && !emailFormControl.hasError('pattern') &&-->
+              <!--!phoneFormControl.hasError('required') &&  !phoneFormControl.hasError('pattern') &&-->
+               <!--!subjectFormControl.hasError('required') &&  !subjectFormControl.hasError('pattern') &&-->
+                 <!--!message.hasError('required') && !message.hasError('pattern') && onSubmit(f)" #f="ngForm" id="contactform" class="row" name="contactform" method="post">-->
+
+          <!--<div class="col-md-12">-->
+            <!--<mat-form-field class="example-full-width mat-size">-->
+              <!--<input matInput placeholder="Enter sub admin user name" autocomplete="off" [formControl]="usernameFormControl"  [(ngModel)]="model.name" required>-->
+              <!--<mat-error *ngIf="usernameFormControl.hasError('pattern')">-->
+                <!--Please enter a valid user name-->
+              <!--</mat-error>-->
+              <!--<mat-error *ngIf="usernameFormControl.hasError('required')">-->
+                <!--User Name is <strong>required</strong>-->
+              <!--</mat-error>-->
+            <!--</mat-form-field> <br>-->
+
+            <!--<mat-form-field class="example-full-width mat-size">-->
+              <!--<input matInput placeholder="Enter Your Email" autocomplete="off" [formControl]="emailFormControl" [(ngModel)]="model.email" required>-->
+              <!--<mat-error *ngIf="emailFormControl.hasError('pattern')">-->
+                <!--Please enter a valid email address-->
+              <!--</mat-error>-->
+              <!--<mat-error *ngIf="emailFormControl.hasError('required')">-->
+                <!--Email is <strong>required</strong>-->
+              <!--</mat-error>-->
+            <!--</mat-form-field> <br>-->
+
+            <!--<mat-form-field class="example-full-width mat-size">-->
+              <!--<input matInput placeholder="Enter Your Phone Number" autocomplete="off" (keypress)="onlyNumberKey($event)" [formControl]="phoneFormControl" [(ngModel)]="model.phone" required>-->
+              <!--<mat-error *ngIf="phoneFormControl.hasError('pattern')">-->
+                <!--Please enter a valid phone number-->
+              <!--</mat-error>-->
+              <!--<mat-error *ngIf="phoneFormControl.hasError('required')">-->
+                <!--Phone number is <strong>required</strong>-->
+              <!--</mat-error>-->
+            <!--</mat-form-field> <br>-->
+            <!---->
+            <!--<div class="text-center">-->
+              <!--<button type="submit" value="SEND" id="submit" class="btn btn-primary"> Send Message</button>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</form>-->
+      <!--</div>-->
+      <!---->
+    <!--</div>&lt;!&ndash; end container &ndash;&gt;-->
+  <!--</section>&lt;!&ndash; end section &ndash;&gt;-->
+<!--</div>-->

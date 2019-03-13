@@ -1,0 +1,1 @@
+<mat-card class="card"> <div class="main"> <img [src]="imgName"> <button class="refrash-button" type="button" (click)="resetImg()" mat-icon-button> <mat-icon>cached</mat-icon> </button> </div><input class="recapcha-input" matInput [(ngModel)]="capchaText" autocomplete="off" maxlength="5" (change)="checkChange()" placeholder="Enter above text"> </mat-card>

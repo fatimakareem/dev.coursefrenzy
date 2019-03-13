@@ -1,0 +1,592 @@
+<section class="banner-upper" data-diff="100" *ngIf="route_instructor">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="" *ngIf="SingleCourseloaded">
+                    <h2>{{SingleCourse?.name}}</h2>
+                    <p>The Complete{{SingleCourse?.name}}Course for 2016/2017! <br>Gain the knowledge hackers use to
+                        compromise systems and use it to protect your own! </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section bgw" *ngIf="route_instructor">
+    <div class="container">
+        <div class="row">
+            <div id="post-content" class="col-md-12 col-sm-12">
+                <div class="course-table clearfix">
+                    <div class="big-title">
+                        <h2 class="related-title"> <span>Course Lessons</span> </h2>
+                    </div>
+                    <div class="row" *ngIf="route_instructor">
+                        <ul class="nav nav-tabs col-md-3" id="myTab" role="tablist">
+                            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab"
+                                    aria-controls="home">Introduction</a> </li>
+                            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab"
+                                    aria-controls="profile">Curriculum</a> </li>
+                            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab"
+                                    aria-controls="messages">Course Overview</a> </li>
+                            <li class="nav-item text-center margin-top-10"> <button *ngIf="route_instructor"
+                                    class="btn-file" (click)="Publishcourse()">Submit For Review</button> </li>
+                        </ul>
+                        <div class="tab-content col-md-9">
+                            <div class="tab-pane active" id="home" role="tabpanel">
+                                <table class="table table-video" *ngIf="demo_vedio">
+                                    <tbody>
+                                        <tr>
+                                            <td class="video-icon"><i class="fa fa-play-circle fa-2x"></i></td>
+                                            <td><a
+                                                    (click)="insSetVideoURL(demo_vedio.video_url)">{{demo_vedio.video_url}}</a>
+                                            </td>
+                                            <td>{{demo_vedio.video_minutes}}Min</td>
+                                            <td *ngIf="route_instructor"><a><i class="fa fa-edit fa-2x delete-icon"
+                                                        (click)="openEditDemoDialog(i, demo_vedio.id)"
+                                                        title="Edit Chapter"></i> </a></td>
+                                        </tr>
+                                    </tbody>
+                                </table> <img src="../../assets/img/single-course-section/intro.gif"
+                                    *ngIf="!demo_vedio && route_instructor"> <button mat-raised-button color=""
+                                    style="float: right;margin-top: 10px;background: #000000;color: #fff;border-radius: 25px"
+                                    *ngIf="route_instructor && !demo_vedio" (click)="openDialog4()"> Add Video</button>
+                                <button type="button" class="close" aria-label="Close" tabindex="-1"> <span
+                                        aria-hidden="true">&times;</span> </button>
+                            </div>
+                            <div class="tab-pane" id="profile" role="tabpanel">
+                                <div class="text-right"> <button *ngIf="route_instructor" class="btn-file"
+                                        (click)="openDialog()">Create New Chapter</button> </div>
+                                <div
+                                    *ngIf="!this.Chaptersloaded || cheptermessage=='No Chapters Posted in the Course' || total==0">
+                                    <img style="width:600px;height:336px"
+                                        src="../../assets/img/single-course-section/No-Chapter.gif"> </div>
+                                <div *ngIf="this.Chaptersloaded && total !=0 && route_instructor">
+                                    <div class="totallectures-bar"> <span class="pull-left">{{duration}}</span> <span
+                                            class="margin-left-25"> Total Lectures{{totallectures}}</span> <span
+                                            class="pull-right margin-r-10px"> Total Chapters{{total}}</span> </div>
+                                    <div class="fancy-collapse-panel"> <span *ngIf="AllChapters.length>0">
+                                            <div *ngFor="let chapter of AllChapters; let i=index">
+                                                <div class="panel-group" id="accordion" role="tablist"
+                                                    aria-multiselectable="true">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading" role="tab"
+                                                            id="heading{{chapter.chapters.id}}">
+                                                            <h4 class="panel-title"> <a class="collapsed"
+                                                                    data-toggle="collapse"
+                                                                    href="#collapse{{chapter.chapters.id}}">{{chapter.chapters.chapter_name}}
+                                                                    <div *ngIf="videos.length===0"> No video is uploaded
+                                                                        yet</div>
+                                                                    <div *ngIf="chapter">
+                                                                        {{chapter.chapters.Lectures}}lectures </div>
+                                                                    <div *ngIf="chapter">{{chapter.chapters.Minutes}}
+                                                                    </div>
+                                                                </a> </h4>
+                                                        </div>
+                                                        <div id="collapse{{chapter.chapters.id}}"
+                                                            class="panel-collapse collapse" role="tabpanel"
+                                                            aria-labelledby="headingOne">
+                                                            <div class="panel-body"> <button color="primary"
+                                                                    class="btn-file" *ngIf="route_instructor"
+                                                                    (click)="openDialog2(chapter.chapters.id, chapter.chapters.video)">
+                                                                    Add Video</button> <i *ngIf="route_instructor"
+                                                                    class="fa fa-trash delete-icon"
+                                                                    (click)="deletdeChapter(i, chapter?.chapters.id)"
+                                                                    data-toggle="tooltip" title="Delete Chapter"></i> <i
+                                                                    *ngIf="route_instructor"
+                                                                    class="fa fa-edit delete-icon"
+                                                                    (click)="openEditChapterDialog(i, chapter.chapters.id)"
+                                                                    title="Edit Chapter"></i>
+                                                                <table class="table table-hover margin-0"
+                                                                    *ngIf="videos"> <br>
+                                                                    <tbody>
+                                                                        <tr *ngFor="let video of videos; let j=index">
+                                                                            <td
+                                                                                *ngIf="chapter.chapters.id===video.chapter_id">
+                                                                                <i class="fa fa-play-circle"></i></td>
+                                                                            <td
+                                                                                *ngIf="chapter.chapters.id===video.chapter_id">
+                                                                                <a
+                                                                                    (click)="SetVideoURL(video.video_url,video.allow_to_view)">{{video.video_title}}</a>
+                                                                            </td>
+                                                                            <td *ngIf="video.allow_to_view==true">
+                                                                                Preview</td>
+                                                                            <td
+                                                                                *ngIf="chapter.chapters.id===video.chapter_id">
+                                                                                {{video.video_minutes}}Min</td>
+                                                                            <td
+                                                                                *ngIf="route_instructor && chapter.chapters.id===video.chapter_id">
+                                                                                <a><i class="fa fa-trash-o fa-2x delete-icon"
+                                                                                        (click)="deletdeVideo(i,j, video?.id)"
+                                                                                        data-toggle="tooltip"
+                                                                                        title="Delete Video"></i></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span> </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="messages" role="tabpanel">
+                                <div class="card margin-0" *ngIf="route_instructor"> <button type="button" class="close"
+                                        aria-label="Close" (click)="closePublishDialog()" tabindex="-1"> <span
+                                            aria-hidden="true">&times;</span> </button>
+                                    <form
+                                        (ngSubmit)="!headline.hasError('required') && !headline.hasError('pattern') && onSubmit(f)"
+                                        #f="ngForm" method="post">
+                                        <div class=" text-center">
+                                            <h4 class="card-title">Course Overview</h4>
+                                        </div>
+                                        <div class="card-content">
+                                            <mat-form-field class="example-full-width mat-size"> <input type="text"
+                                                    matInput placeholder=" Enter Course Headline"
+                                                    [formControl]="headline" name="headline"
+                                                    [(ngModel)]="model.headline" required>
+                                                <mat-error *ngIf="headline.hasError('required')"> Headline is
+                                                    <strong>required</strong> </mat-error>
+                                                <mat-error *ngIf="headline.hasError('pattern')"> Please enter a valid
+                                                    headline </mat-error>
+                                            </mat-form-field>
+                                            <mat-form-field>
+                                                <mat-select placeholder="Select Course Language"
+                                                    [(ngModel)]="selectedValue" name="language">
+                                                    <mat-option *ngFor="let language of languages"
+                                                        [value]="language.value">{{language.viewValue}}</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <ckeditor [(ngModel)]="model.detail" name="detail">
+                                                <ckbutton [name]="'saveButton'" [command]="'saveCmd'"
+                                                    [icon]="'save.png'" [label]="'Save Document'"
+                                                    [toolbar]="'clipboard,1'"> </ckbutton>
+                                            </ckeditor>
+                                            <!-- <textarea rows="3" matInput #detail1 maxlength="5000" placeholder="Enter Course details" [required]="detail" name="detail" [(ngModel)]="model.detail" #detail="ngModel" required pattern="[a-zA-Z0-9 -_.]+?"> </textarea> -->
+                                            <!-- <mat-hint align="start"><strong>(Minimum Length 1000 characters)</strong> </mat-hint> <mat-hint align="end">{{detail1.value.length}}/ 5000</mat-hint> <mat-error *ngIf="detail.hasError('required')"> Course detail is <strong>required</strong> </mat-error> <mat-error *ngIf="detail.hasError('pattern')"> Please enter <strong> valid </strong> details </mat-error> </mat-form-field> -->
+                                        </div>
+                                        <div class="footer text-right col-sm-12"> <button class="btn-file" type="submit"
+                                                id="submit" tabindex="2">Submit</button> </div>
+                                    </form>
+                                </div>
+                                <div *ngIf="NoOverviewMessage.length>0" class="text-center"> <img
+                                        style="width:600px;height:336px"
+                                        src="../../assets/img/single-course-section/Overview.gif"> </div>
+                                <div *ngIf="NoOverviewFalse=='true'" class="course-single-desc clearfix">
+                                    <div class="big-title">
+                                        <h2 class="related-title"> <span>Course Language</span> </h2>
+                                    </div>
+                                    <p>{{overview.language}}</p>
+                                    <div class="big-title">
+                                        <h2 class="related-title"> <span>Course Headline</span> </h2>
+                                    </div>
+                                    <p>{{overview.about_course}}</p>
+                                    <div class="big-title">
+                                        <h2 class="related-title"> <span>Course Description</span> </h2>
+                                    </div>
+                                    <p>{{overview.description}}</p>
+                                    <div class="big-title">
+                                        <h2 class="related-title"> <span>Course Requireements</span> </h2>
+                                    </div>
+                                    <p>{{overview.requirement}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <script></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade video" id="loadVideo" tabindex="-1" role="dialog" aria-labelledby="loadVideoLabel"
+    *ngIf="route_instructor">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button> </div>
+            <div class="modal-body">
+                <vg-player> <video id="courseVideo" class="videoplayer" controls=""
+                        poster="../../assets/img/video-thumbail/video_01.jpg" preload="none">
+                        <source
+                            src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.mp4"
+                            type="video/mp4">
+                        <source
+                            src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.webm"
+                            type="video/webm">
+                        <source
+                            src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.ogv"
+                            type="video/ogg"> </video> </vg-player>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="banner-upper" data-diff="100" *ngIf="!route_instructor">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-8 col-sm-8">
+                <div class="txt" *ngIf="SingleCourseloaded">
+                    <h2>{{SingleCourse?.name}}</h2>
+                    <p>The Complete{{SingleCourse?.name}}Course for 2016/2017! </p>
+                    <div class="">
+                        <div class="clp-lead__element-item">
+                            <div class="clp-component-render"> <span class="badge badge-accented yellow"
+                                    data-purpose="badge"> Bestseller </span> </div>
+                        </div>
+                        <rating ngModel="{{rev}}" [readonly]="true"></rating><label
+                            class="single-rating-box">{{rev}}</label>
+                    </div>
+                </div>
+            </div>
+            <div id="sidebar" class="col-md-4 col-sm-4 single-course-sidebar rltv">
+                <div class="sidebar-wrapper right-col__content">
+                    <div class="post-media clearfix" style="position: relative;">
+                        <div class="post-media clearfix" style="background: #ffffff; padding: 0; " *ngIf="demo_vedio">
+                            <video class="videoplayer" poster="{{VideoUrl}}{{demo_vedio.video_url}}" preload="none">
+                                <source type="video/mp4" src="{{VideoUrl}}{{demo_vedio.video_url}}" />
+                                <source type="video/webm" src="{{VideoUrl}}{{demo_vedio.video_url}}" />
+                                <source type="video/ogg" src="{{VideoUrl}}{{demo_vedio.video_url}}" /> </video> <a
+                                *ngIf="demo_vedio" (click)="insSetVideoURL(demo_vedio.video_url)"><img
+                                    class="video-play-icon" src="../../assets/img/coursefrenzy-play-icon.svg"
+                                    alt="plya"></a><a *ngIf="!demo_vedio"><img class="video-play-icon"
+                                    src="../../assets/img/coursefrenzy-play-icon.svg" alt="plya"></a> </div>
+                        <div class="post-media clearfix" style="background: #ffffff; padding: 0; " *ngIf="!demo_vedio">
+                            <video *ngIf="SingleCourse?.course_image" class="videoplayer"
+                                poster="{{StaticImageUrl}}{{SingleCourse?.course_image}}" preload="none">
+                                <source type="video/mp4"
+                                    src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.mp4" />
+                                <source type="video/webm"
+                                    src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.webm" />
+                                <source type="video/ogg"
+                                    src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.ogv" />
+                            </video> <img class="video-play-icon" src="../../assets/img/coursefrenzy-play-icon.svg"
+                                alt="plya"> </div>
+                    </div>
+                    <div class="custom-widget course-pricing clearfix">
+                        <div class="customwidget text-left w40">
+                            <div class="price-box">
+                                <h3 class="new-price">${{SingleCourse?.discounted_price}}.00</h3>
+                                <h3 class="old-price">${{SingleCourse?.actual_price}}.00</h3><br>
+                            </div>
+                            <h4 class="price-deial">30-Day Money-Back Guarantee</h4>
+                            <div class="sidebar-btn" *ngIf="my_vedio==false"> <button *ngIf="route_instructor<1"
+                                     (click)="buyNowClick(i,SingleCourse.id)" style="margin: 0" class="button"> Buy Now
+                                </button><br><button *ngIf="SingleCourse.accept_offer==true"
+                                    (click)="AcceptDialog(SingleCourse.id)" style="margin: 0" class="button"> Accept
+                                    Offer </button>
+                                <ng-container *ngIf="SingleCourse.BidPrice>0"> <button *ngIf="route_instructor<1"
+                                        style="margin: 10px 0 0" (click)="openBidDialog()" class="cartbutton"> Bid Now
+                                    </button> </ng-container>
+                            </div><br *ngIf="my_vedio==false" />
+                            <div class="sidebar-btn single-course-wishlist " *ngIf="my_vedio==false">
+                                 <!-- <a
+                                    class="material-icons wishlist" title="Add to wishlist"
+                                    (click)="onclick(SingleCourse.id)">favorite_border</a>  -->
+                                    <a class="material-icons wishlist"
+                                        title="Add to wishlist">
+                                        <div *ngIf="SingleCourse.inWishList==true"
+                                            (click)="onclick(i, SingleCourse.id,SingleCourse.inWishList)"><i
+                                                class="fas fa-heart"></i></div>
+                                        <div *ngIf="SingleCourse.inWishList==false"
+                                            (click)="onclick(i, SingleCourse.id,SingleCourse.inWishList)"><i
+                                                class="far fa-heart"></i></div>
+                                    </a>
+                                    <a
+                                    class="wishlist material-icons" title="Add to Cart"
+                                    (click)="openDialogAddToCart(i,SingleCourse?.id)">add_shopping_cart</a> </div><span
+                                class="inclide">Includes:</span>
+                            <p class="dt-fix"><i class="fa fa-file-video-o"></i>{{minuts}}hours on-demand video</p>
+                            <p class="dt-fix"><i class="fa fa-universal-access"></i>Full lifetime access</p>
+                            <p class="dt-fix"><i class="fa fa-bolt"></i>Assignments</p>
+                            <p class="dt-fix"><i class="fa fa-certificate"></i>Certificate of Completion</p>
+                            <div class="course-meta clearfix">
+                                <p class="course-category">Category: <a href="course-list.html">{{course_category}}</a>
+                                </p>
+                                <hr>
+                                <div>
+                                    <p>Reviews: <rating ngModel="{{rev}}" [readonly]="true"></rating>
+                                    </p>
+                                    <hr>
+                                </div>
+                                <hr>
+                                <p class="course-time">Period: 12 Month </p>
+                                <hr>
+                                <p class="course-instructors">Instructor: <a
+                                        routerLink="/user-profile/{{instructor_id}}">{{firstname}}{{lastname}}</a></p>
+                                <hr>
+                                <p class="course-forum">Course Forum: <a
+                                        routerLink="/courses/subcat_courses/{{course_Subcategory_id}}"
+                                        title="">{{course_Subcategory}}</a></p>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section bgw" *ngIf="!route_instructor">
+    <div class="container">
+        <div class="row">
+            <div id="post-content" class="col-md-8 col-sm-8">
+                <div class="course-table clearfix">
+                    <div class="" *ngIf="total !=0">
+                        <h2 class="related-title"> <span>Course Content</span> </h2>
+                    </div>
+                    <div *ngIf="this.Chaptersloaded && total !=0" class="">
+                        <div class="totallectures-bar"> <span class="pull-left"> Total Chapters{{total}}</span> <span
+                                class="margin-left-31">{{duration}}</span> <span class="pull-right"> Total
+                                Lectures{{totallectures}}</span> </div>
+                        <div class="fancy-collapse-panel"><span>
+                                <div *ngFor="let chapter of AllChapters; let i=index">
+                                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="heading{{chapter.chapters.id}}">
+                                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse"
+                                                        href="#collapse{{chapter.chapters.id}}">{{chapter.chapters.chapter_name}}
+                                                        <div *ngIf="videos.length===0"> No video is uploaded yet</div>
+                                                        <div *ngIf="chapter">{{chapter.chapters.Lectures}}lectures
+                                                        </div>
+                                                        <div *ngIf="chapter">{{chapter.chapters.Minutes}}</div>
+                                                    </a> </h4>
+                                            </div>
+                                            <div id="collapse{{chapter.chapters.id}}" class="panel-collapse collapse"
+                                                role="tabpanel" aria-labelledby="headingOne">
+                                                <div class="panel-body">
+                                                    <table class="table table-hover" *ngIf="videos"> <br>
+                                                        <tbody>
+                                                            <tr *ngFor="let video of videos; let j=index">
+                                                                <td *ngIf="chapter.chapters.id===video.chapter_id"><i
+                                                                        class="fa fa-play-circle"></i></td>
+                                                                <td *ngIf="chapter.chapters.id===video.chapter_id"><a
+                                                                        (click)="SetVideoURL1(video.video_url,video.allow_to_view)">{{video.video_title}}</a>
+                                                                </td>
+                                                                <td *ngIf="video.allow_to_view==true"> Preview</td>
+                                                                <td *ngIf="chapter.chapters.id===video.chapter_id">
+                                                                    {{video.video_minutes}}Min</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </span> </div>
+                    </div>
+                    <div class="margin-bottom-20" *ngIf="NoOverviewFalse=='true'">
+                        <h2 class="related-title"> <span>Course Requireements</span> </h2>
+                    </div>
+                    <p *ngIf="NoOverviewFalse=='true'">{{overview.requirement}}</p>
+                    <div class="margin-bottom-20" *ngIf="NoOverviewFalse=='true'">
+                        <h2 class="related-title"> <span>Course Description</span> </h2>
+                    </div>
+                    <p *ngIf="NoOverviewFalse=='true'">{{overview.description}}</p>
+                </div>
+                <div *ngIf="SingleCourseloaded" class="single-course-title text-center">
+                    <h3><a title="">{{SingleCourse?.name}}</a></h3>
+                    <div class="post-sharing">
+                        <ul class="list-inline">
+                            <li><a class="fb-button btn btn-primary"><i class="fab fa-facebook"></i> <span
+                                        class="hidden-xs">Share on Facebook</span></a></li>
+                            <li><a class="tw-button btn btn-primary"><i class="fab fa-twitter"></i> <span
+                                        class="hidden-xs">Tweet on Twitter</span></a></li>
+                            <li><a class="gp-button btn btn-primary"><i class="fab fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="invis">
+                <div class="well well-sm">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-3 text-center">
+                            <h1 class="rating-num"> 4.0</h1>
+                            <div class="rating"> <span class="glyphicon glyphicon-star"></span><span
+                                    class="glyphicon glyphicon-star"></span> <span
+                                    class="glyphicon glyphicon-star"></span><span
+                                    class="glyphicon glyphicon-star"></span> <span
+                                    class="glyphicon glyphicon-star-empty"></span> </div>
+                            <div> <span class="glyphicon glyphicon-user"></span>1,050,008 total </div>
+                        </div>
+                        <div class="col-xs-12 col-md-9">
+                            <div class="row rating-desc">
+                                <div class="col-xs-4 col-md-2 text-right"> <span
+                                        class="glyphicon glyphicon-star"></span>5 </div>
+                                <div class="col-xs-8 col-md-10">
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-success" role="progressbar"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80%</span> </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-md-2 text-right"> <span
+                                        class="glyphicon glyphicon-star"></span>4 </div>
+                                <div class="col-xs-8 col-md-10">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60%</span> </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-md-2 text-right"> <span
+                                        class="glyphicon glyphicon-star"></span>3 </div>
+                                <div class="col-xs-8 col-md-10">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-info" role="progressbar"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40%</span> </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-md-2 text-right"> <span
+                                        class="glyphicon glyphicon-star"></span>2 </div>
+                                <div class="col-xs-8 col-md-10">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20%</span> </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-md-2 text-right"> <span
+                                        class="glyphicon glyphicon-star"></span>1 </div>
+                                <div class="col-xs-8 col-md-10">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar"
+                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                                            <span class="sr-only">15%</span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><button *ngIf="IsBuyed" class="btn btn-primary btn-lg" (click)="openReviewDialog()">Leave a
+                    Review</button>
+                <hr class="invis1">
+                <div *ngIf="IsBuyed" class="single-content comment-wrapper">
+                    <div class="clearfix">
+                        <div class="big-title">
+                            <h2 class="related-title"> <span>Leave a Review</span> </h2>
+                        </div>
+                        <form novalidate id="reviewsForm" class="well">
+                            <div class="col-lg-12 padding-L-0">
+                                <h4 class="margin-0">Rate this course </h4>
+                                <fieldset class="ratingq"> <input type="radio" id="star5q" name="rating" value="5"
+                                        (click)="getValueq(5)" [(ngModel)]="model.rating" /> <label class="full"
+                                        for="star5q" title="Awesome - 5 stars"></label> <input type="radio"
+                                        id="star4halfq" name="rating" value="4.5" [(ngModel)]="model.rating"
+                                        (click)="getValueq(4.5)" /><label class="half" for="star4halfq"
+                                        title="Pretty good - 4.5 stars"></label> <input type="radio" id="starq"
+                                        name="rating" value="4" (click)="getValueq(4)"
+                                        [(ngModel)]="model.rating" /><label class="full" for="starq"
+                                        title="Pretty good - 4 stars"></label> <input type="radio" id="star3halfq"
+                                        name="rating" value="3.5" (click)="getValueq(3.5)"
+                                        [(ngModel)]="model.rating" /><label class="half" for="star3halfq"
+                                        title="Meh - 3.5 stars"></label> <input type="radio" id="star3q" name="rating"
+                                        value="3" (click)="getValueq(3)" [(ngModel)]="model.rating" /><label
+                                        class="full" for="star3q" title="Meh - 3 stars"></label> <input type="radio"
+                                        id="star2halfq" name="rating" value="2.5" (click)="getValueq(2.5)"
+                                        [(ngModel)]="model.rating" /><label class="half" for="star2halfq"
+                                        title="Kinda bad - 2.5 stars"></label> <input type="radio" id="star2q"
+                                        name="rating" value="2" (click)="getValueq(2)"
+                                        [(ngModel)]="model.rating" /><label class="full" for="star2q"
+                                        title="Kinda bad - 2 stars"></label> <input type="radio" id="star1halfq"
+                                        name="rating" value="1.5" (click)="getValueq(1.5)"
+                                        [(ngModel)]="model.rating" /><label class="half" for="star1halfq"
+                                        title="Meh - 1.5 stars"></label> <input type="radio" id="star1q" name="rating"
+                                        value="1" (click)="getValueq(1)" [(ngModel)]="model.rating" /><label
+                                        class="full" for="star1q" title="Sucks big time - 1 star"></label> <input
+                                        type="radio" id="starhalfq" (click)="getValueq(0.5)" name="rating" value="0.5"
+                                        [(ngModel)]="model.rating" /><label class="half" for="starhalfq"
+                                        title="Sucks big time - 0.5 stars"></label> </fieldset>
+                            </div>
+                            <div class="form-area">
+                                <div class="form-element">
+                                    <div class="formrow">
+                                        <h4>Review <em>*</em></h4> <textarea class="form-control review-texteara"
+                                            [formControl]="reviewscomment" name="comment" [(ngModel)]="model.comment"
+                                            required></textarea>
+                                    </div>
+                                </div><br>
+                                <div class="buttons-set pull-right"> <button class="btn-file" title="Submit Review"
+                                        type="submit" (click)="reviews_post()"><span><i class="fa fa-thumbs-up"></i>
+                                            &nbsp;Review</span></button> </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="single-content comment-wrapper clearfix">
+                    <div class="related-posts">
+                        <div class="big-title">
+                            <h2 class="related-title"> <span>What Students Say About This Course</span> </h2>
+                        </div>
+                        <div *ngIf="!reviewsloaded" class="text-center"> <img style="width: 550px; height: 400px;"
+                                src="../../assets/img/single-course-section/Review.gif"> </div>
+                        <div *ngIf="reviewsloaded" class="tab-pane active" id="comments-logout">
+                            <ul class="media-list">
+                                <li class="media" *ngFor="let review of reviewss?.reviews"> <a class="pull-left"
+                                        href=""> <img class="media-object img-circle"
+                                            *ngIf="review?.user?.profile?.profilePhoto?.length >0 "
+                                            src="{{ImageUrl}}{{review?.user?.profile?.profilePhoto}}" alt="profile">
+                                    </a> <a class="pull-left" href="" *ngIf="!review?.user?.profile?.profilePhoto ">
+                                        <img class="media-object img-circle"
+                                            src="https://s3.amazonaws.com/uifaces/faces/twitter/lady_katherine/128.jpg"
+                                            alt="profile"> </a>
+                                    <div class="media-body">
+                                        <div class="well well-lg" *ngIf="review?.user?.first_name">
+                                            <h4 class="media-heading text-uppercase reviews">
+                                                {{review?.user?.first_name}}{{review?.user?.last_name}}</h4>
+                                            <ul class="media-date text-uppercase reviews list-inline">
+                                                <li>{{review?.commentDate | date}}</li>
+                                            </ul>
+                                            <p class="media-comment">{{review?.comment}}</p>
+                                        </div>
+                                        <div class="well well-lg" *ngIf="!review?.user?.first_name">
+                                            <h4 class="media-heading text-uppercase reviews">Someone User</h4>
+                                            <ul class="media-date text-uppercase reviews list-inline">
+                                                <li>{{review?.commentDate | date}}</li>
+                                            </ul>
+                                            <p class="media-comment">{{review?.comment}}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div> </div>
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 text-center">
+                    <app-teaches-by-teacher></app-teaches-by-teacher>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 text-center"> <a
+                        routerLink="/user-profile/{{SingleCourse?.user_id?.id}}"
+                        class="btn-01">Visit{{SingleCourse?.user_id?.first_name}}{{SingleCourse?.user_id?.last_name}}'s
+                        Profile to see more Courses </a> </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade video" id="loadVideo" tabindex="-1" role="dialog" aria-labelledby="loadVideoLabel"
+    *ngIf="!route_instructor">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button> </div>
+            <div class="modal-body">
+                <vg-player> <video id="courseVideo" class="videoplayer" controls=""
+                        poster="../../assets/img/video-thumbail/video_01.jpg" preload="none">
+                        <source
+                            src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.mp4"
+                            type="video/mp4">
+                        <source
+                            src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.webm"
+                            type="video/webm">
+                        <source
+                            src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.ogv"
+                            type="video/ogg"> </video> </vg-player>
+            </div>
+        </div>
+    </div>
+</div>

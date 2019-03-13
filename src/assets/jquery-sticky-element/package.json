@@ -1,0 +1,74 @@
+{
+  "_from": "jquery-sticky-element",
+  "_id": "jquery-sticky-element@1.3.0",
+  "_inBundle": false,
+  "_integrity": "sha512-oTuX4HZvuT4CiEnbgZoNu7wI0goAO4cpla0YnWgjlmhkMJnDUwPyXrs5tk0DaQhLhws+eOnrRtWMf5uQqF3yVQ==",
+  "_location": "/jquery-sticky-element",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "jquery-sticky-element",
+    "name": "jquery-sticky-element",
+    "escapedName": "jquery-sticky-element",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/jquery-sticky-element/-/jquery-sticky-element-1.3.0.tgz",
+  "_shasum": "4d4f90124e82ba75c9cd7d33722d019ca3b2d027",
+  "_spec": "jquery-sticky-element",
+  "_where": "E:\\angulartest",
+  "author": {
+    "name": "Enzo Martin",
+    "email": "enzo.r.martin@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/EnzoMartin/Sticky-Element/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Enzo Martin",
+      "email": "enzo.r.martin@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.7.0"
+  },
+  "deprecated": false,
+  "description": "Simple and lightweight plugin to pin/sticky elements inside a container so they move as the user scrolls",
+  "devDependencies": {
+    "enzo-codestyle": "^4.3.0",
+    "eslint": "^4.10.0"
+  },
+  "files": [
+    "jquery.stickyelement.js",
+    "jquery.stickyelement.min.js"
+  ],
+  "homepage": "https://github.com/EnzoMartin/Sticky-Element#readme",
+  "keywords": [
+    "dom",
+    "sticky",
+    "pin",
+    "element",
+    "scroll",
+    "jquery-plugin",
+    "ecosystem:jquery"
+  ],
+  "license": "MIT",
+  "name": "jquery-sticky-element",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/EnzoMartin/Sticky-Element.git"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix ."
+  },
+  "version": "1.3.0"
+}

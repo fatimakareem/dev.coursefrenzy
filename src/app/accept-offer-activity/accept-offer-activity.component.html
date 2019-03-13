@@ -1,0 +1,72 @@
+<div class="content-box-01 padding-top-10">
+  <div class="container-fluid1">
+      <div class="row">
+          <div class="col-lg-12 text-center">
+              <h3 class="page-title-01 img-bg img-bg-5 color-white">Accept Offer Activity</h3>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="container pad">
+ 
+    
+  <section class="section bgw single-course">
+    <div class="container">
+        <div class="courses-div" *ngIf="response==''"> You did not post any course </div>
+        <div class="courses-div" *ngFor="let list of response; let i=index;">
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-12">
+                    <div class="popular-courses">
+                        <div class="post-media entry">
+                            <div class="ribbon-wrapper-green">
+                                <div class="ribbon-green">Featured</div>
+                            </div>
+                            <div class="img-holder"> <img *ngIf="list?.course.course_image"
+                                    src="{{ImageUrl}}{{list?.course.course_image}}" alt=""
+                                    class="img-responsive imgheight"> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="min-height col-md-9 col-sm-8 col-xs-12">
+                    <div class="about-module"> <span *ngIf="list?.course.skill==='B'"
+                            class="label label-success">IDEAL FOR BEGINNERS</span> <span
+                            *ngIf="list?.course.skill==='I'" class="label label-success">IDEAL FOR
+                            MEDIOCRES</span> <span *ngIf="list?.course.skill==='A'"
+                            class="label label-success">IDEAL FOR EXPERTS</span>
+                        <div class="clearfix"></div>
+                        <h3>{{list?.course.name}}</h3>
+                        <h4>Amount:{{list?.amount| currency:'USD'}}</h4>
+                        <p>{{list?.course.overview}}</p>
+
+
+                        
+                    </div>
+
+
+                    <div class="large-post-meta col-lg-12"> <span class="avatar"><a
+                        [routerLink]="['/profile']"><img src="../../assets/upload/avatar_01.png"
+                            class="img-circle">{{list?.course.user_id.username}}</a></span>
+                <small>&#124;</small> <span><a><i
+                            class="fa fa-clock-o"></i>{{list?.course.postDate | date}}</a></span>
+                <small class="hidden-xs">&#124;</small> <span class="hidden-xs"><a><i
+                            class="fa fa-dollar"></i>{{list?.amount| currency:'USD'}}</a></span>
+                <small class="hidden-xs">&#124;</small> <span
+                    *ngIf="list?.course.skill==='A'" class="hidden-xs"><a><i
+                            class="fa fa-users"></i> Advanced Level</a></span> <span
+                    *ngIf="list?.course.skill==='B'" class="hidden-xs"><a><i
+                            class="fa fa-users"></i> Begineer Level</a></span> <span
+                    *ngIf="list?.course.skill==='I'" class="hidden-xs"><a><i
+                            class="fa fa-users"></i> Intermediate Level</a></span> <span
+                    class="hidden-xs"><a><i class="fa fa-users"></i> English</a></span>
+                <div class="pay-now-btn" *ngIf="list?.isPayed==false"> <a
+                        class="icon-hover" (click)="openDialog2(i, list?.course?.id)"> Pay
+                        Now </a> </div>
+            </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+      
+</div>

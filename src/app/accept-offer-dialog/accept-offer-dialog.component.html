@@ -1,0 +1,24 @@
+<app-loader></app-loader>
+<div class="card"> <button type="button" class="close" aria-label="Close" (click)="onNoClick()" tabindex="-1"> <span
+            aria-hidden="true">&times;</span> </button>
+    <div class="card-header text-center" data-background-color="rose">
+        <h4 class="card-title"> Accept Offer </h4>
+    </div>
+    <form (ngSubmit)="!bid_amount.hasError('required') && onSubmit(f)" #f="ngForm" id="bidform4" name="bidform4"
+        method="post">
+        <div class="card-content">
+           
+            <mat-form-field class="example-full-width mat-size"> <input type="text" matInput
+                    placeholder="Enter Your Amount (US $) For Offer" (keypress)="onlyNumberKey($event)" [formControl]="bid_amount"
+                    name="video_title" [(ngModel)]="model.bid_amount" required pattern="[0-9]+?">
+                <mat-error *ngIf="bid_amount.hasError('pattern')"> Digits are allowed only </mat-error>
+                <mat-error *ngIf="bid_amount.hasError('required')">Offer Amount is <strong>required</strong> </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="footer text-right col-sm-12"> <button class="button btn-primary custom" type="submit" tabindex="2">
+                Offer Now</button> </div>
+        <div class="col-sm-12">
+            <p class="smalltext">By placing an Offer, you're committing to buy this item.</p>
+        </div>
+    </form>
+</div>

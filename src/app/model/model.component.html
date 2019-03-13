@@ -1,0 +1,109 @@
+<!--<div class="example-tooltip-host" matTooltip="this is tool tip!" [matTooltipPosition]="position">-->
+  <!--<span>Show tooltip</span>-->
+  <!--&lt;!&ndash;<mat-form-field>&ndash;&gt;-->
+    <!--&lt;!&ndash;<mat-select class="example-select" [(ngModel)]="position">&ndash;&gt;-->
+      <!--&lt;!&ndash;<mat-option value="before">Before</mat-option>&ndash;&gt;-->
+      <!--&lt;!&ndash;<mat-option value="after">After</mat-option>&ndash;&gt;-->
+      <!--&lt;!&ndash;<mat-option value="above">Above</mat-option>&ndash;&gt;-->
+      <!--&lt;!&ndash;<mat-option value="below">Below</mat-option>&ndash;&gt;-->
+      <!--&lt;!&ndash;<mat-option value="left">Left</mat-option>&ndash;&gt;-->
+      <!--&lt;!&ndash;<mat-option value="right">Right</mat-option>&ndash;&gt;-->
+    <!--&lt;!&ndash;</mat-select>&ndash;&gt;-->
+  <!--&lt;!&ndash;</mat-form-field>&ndash;&gt;-->
+<!--</div>-->
+
+
+
+<!--&lt;!&ndash;<ol>&ndash;&gt;-->
+  <!--&lt;!&ndash;<li>&ndash;&gt;-->
+    <!--&lt;!&ndash;<mat-form-field>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<ol>mdInput [(ngModel)]="name" placeholder="What's your name?">&ndash;&gt;-->
+    <!--&lt;!&ndash;</mat-form-field>&ndash;&gt;-->
+  <!--&lt;!&ndash;</li>&ndash;&gt;-->
+  <!--&lt;!&ndash;<li>&ndash;&gt;-->
+    <!--&lt;!&ndash;<button mat-raised-button (click)="openDialog()">Pick one</button>&ndash;&gt;-->
+  <!--&lt;!&ndash;</li>&ndash;&gt;-->
+  <!--&lt;!&ndash;<li *ngIf="animal">&ndash;&gt;-->
+    <!--&lt;!&ndash;You chose: <i>{{animal}}</i>&ndash;&gt;-->
+  <!--&lt;!&ndash;</li>&ndash;&gt;-->
+<!--&lt;!&ndash;</ol>&ndash;&gt;-->
+
+
+<!--<button mat-icon-button [matMenuTriggerFor]="menu">-->
+  <!--<mat-icon class="fa fa-user"></mat-icon>-->
+  <!--Click here-->
+
+<!--</button>-->
+<!--<mat-menu #menu="matMenu">-->
+  <!--<button mat-menu-item>-->
+    <!--<mat-icon class="fa fa-tags"></mat-icon>-->
+    <!--<span>Redial</span>-->
+  <!--</button>-->
+<!--</mat-menu>-->
+
+
+
+<!--&lt;!&ndash;<button mat-button [mdMenuTriggerFor]="menu">&ndash;&gt;-->
+  <!--&lt;!&ndash;<mat-icon class="fa fa-user"></mat-icon>&ndash;&gt;-->
+  <!--&lt;!&ndash;Menu&ndash;&gt;-->
+
+<!--&lt;!&ndash;</button>&ndash;&gt;-->
+<!--&lt;!&ndash;<mat-menu #menu="mdMenu">&ndash;&gt;-->
+  <!--&lt;!&ndash;<button mat-menu-item class="fa fa-tags">Item 1</button>&ndash;&gt;-->
+  <!--&lt;!&ndash;<button mat-menu-item>Item 2</button>&ndash;&gt;-->
+<!--&lt;!&ndash;</mat-menu>&ndash;&gt;-->
+<!--&lt;!&ndash;<div style="height: 300px; width: 700px; text-align: center">&ndash;&gt;-->
+  <!--&lt;!&ndash;<vg-player>&ndash;&gt;-->
+    <!--&lt;!&ndash;<video [vgMedia]="media" #media id="singleVideo1" preload="auto" controls>&ndash;&gt;-->
+      <!--&lt;!&ndash;<source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">&ndash;&gt;-->
+    <!--&lt;!&ndash;</video>&ndash;&gt;-->
+  <!--&lt;!&ndash;</vg-player>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<div style="height: 300px; width: 700px; text-align: center">&ndash;&gt;-->
+  <!--&lt;!&ndash;<vg-player>&ndash;&gt;-->
+  <!--&lt;!&ndash;<vg-overlay-play></vg-overlay-play>&ndash;&gt;-->
+  <!--&lt;!&ndash;<vg-buffering></vg-buffering>&ndash;&gt;-->
+
+  <!--&lt;!&ndash;<vg-scrub-bar>&ndash;&gt;-->
+    <!--&lt;!&ndash;<vg-scrub-bar-current-time></vg-scrub-bar-current-time>&ndash;&gt;-->
+    <!--&lt;!&ndash;<vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>&ndash;&gt;-->
+  <!--&lt;!&ndash;</vg-scrub-bar>&ndash;&gt;-->
+
+  <!--&lt;!&ndash;<vg-controls>&ndash;&gt;-->
+    <!--&lt;!&ndash;<vg-play-pause></vg-play-pause>&ndash;&gt;-->
+    <!--&lt;!&ndash;<vg-playback-button></vg-playback-button>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>&ndash;&gt;-->
+    <!--&lt;!&ndash;<vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<vg-track-selector></vg-track-selector>&ndash;&gt;-->
+    <!--&lt;!&ndash;<vg-mute></vg-mute>&ndash;&gt;-->
+    <!--&lt;!&ndash;<vg-volume></vg-volume>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<vg-fullscreen></vg-fullscreen>&ndash;&gt;-->
+  <!--&lt;!&ndash;</vg-controls>&ndash;&gt;-->
+
+  <!--&lt;!&ndash;<video [vgMedia]="media" #media id="singleVideo" preload="auto" crossorigin>&ndash;&gt;-->
+    <!--&lt;!&ndash;<source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">&ndash;&gt;-->
+    <!--&lt;!&ndash;<source src="http://static.videogular.com/assets/videos/videogular.ogg" type="video/ogg">&ndash;&gt;-->
+    <!--&lt;!&ndash;<source src="http://static.videogular.com/assets/videos/videogular.webm" type="video/webm">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt" srclang="en" default>&ndash;&gt;-->
+    <!--&lt;!&ndash;<track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt" srclang="es">&ndash;&gt;-->
+  <!--&lt;!&ndash;</video>&ndash;&gt;-->
+<!--&lt;!&ndash;</vg-player>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+<!--<vg-player>-->
+  <!--<video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>-->
+    <!--<source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">-->
+  <!--</video>-->
+<!--</vg-player>-->
+

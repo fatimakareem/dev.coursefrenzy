@@ -1,0 +1,65 @@
+<app-loader></app-loader>
+<div class="row login-page">
+    <div class="col-lg-4 col-md-6 col-sm-8 col-xs-12 login-wrap">
+        <form class="sh-signup-form-fix ng-untouched ng-pristine ng-valid"
+            (ngSubmit)="!userFormControl.hasError('required') && !userFormControl.hasError('pattern') && !passwordFormControl.hasError('required') && captcha && onSubmit(f)"
+            #f="ngForm" novalidate>
+            <div class="card">
+                <div class="card-header text-center margin-bottom-0" data-background-color="rose">
+                    <h4 class="card-title"><label class="font"> Sign in to Your Account</label></h4>
+                    <div class="social-line"> 
+                        <a class="btn btn-just-icon btn-simple" (click)="signInWithFB()"> 
+                            <!-- <i class="fab fa-facebook-square"></i>  -->
+                            <img src="../../assets/img/icon-facebook.png">
+                            
+                            </a>
+                                <a class="btn btn-just-icon btn-simple"
+                            (click)="signInWithGoogle()"> 
+                            <!-- <i class="fab fa-google"                       style="background: none !important;"></i> -->
+                            <img src="../../assets/img/icon-Google.png">
+                         </a> 
+                        </div>
+                </div>
+                <div class="card-content padding-bottom-0">
+                    <mat-form-field class="example-full-width mat-size margin-bottom-20"> <input matInput
+                            placeholder="Username" tabindex=1 [formControl]="userFormControl"
+                            [(ngModel)]="model.firstname" required> <span class="pointer" *ngIf="model.firstname"
+                            matSuffix mat-icon-button aria-label="Clear" (click)="model.firstname=''">
+                            <mat-icon>close</mat-icon>
+                        </span>
+                        <mat-error *ngIf="userFormControl.hasError('pattern')"> Please enter a valid username
+                        </mat-error>
+                        <mat-error *ngIf="userFormControl.hasError('required')"> Username is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width mat-size"> <input [type]="hide ? 'password' : 'text'"
+                            matInput placeholder="Password" tabindex=2 [formControl]="passwordFormControl"
+                            [(ngModel)]="model.password" required>
+                        <mat-icon class="pointer" data-toggle="tooltip" title="{{hide? 'Show' : 'Hide'}}Password"
+                            matSuffix (click)="hide=!hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        <mat-error *ngIf="passwordFormControl.hasError('required')"> Password is
+                            <strong>required</strong> </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="checkpad text-left float-left col-md-6 col-sm-6 col-xs-12">
+                    <mat-checkbox [(checked)]="model">Stay signed in</mat-checkbox> <a class="font2 forgot-pass"
+                        (click)="openDialog()">Forgot Password? </a>
+                </div>
+                <div class="form-group margin-0 col-md-6 col-sm-6 col-xs-12" [ngClass]="{'has-error': f.submitted}">
+                    <app-recapcha class="pull-right recapcha"></app-recapcha>
+                </div>
+                <div class="footer text-center"> <button type="submit" class="button signup-btn" tabindex=3> Sign
+                        in</button> <label class="font1"> Don't have an account? <a class="font1"
+                            [routerLink]="['/signup']"> Sign up </a></label> 
+                            <div class="term-privacy text-center">
+                                    <a  target="_blank" href="/terms">Terms of Service </a>
+                                    <a  target="_blank" href="/privacy-policy">Privacy Policy</a>
+                                </div>
+                        
+                        </div>
+                
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-4 col-md-3"></div>
+</div>

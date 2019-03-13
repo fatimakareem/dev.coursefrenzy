@@ -1,0 +1,1 @@
+var fixmeTop=$('.fixme').offset().top;$(window).scroll(function(){var currentScroll=$(window).scrollTop();if(currentScroll>=fixmeTop){$('.fixme').css({position:'fixed',top:'15%',right:'12%',width:'370px',zIndex:99});}else{$('.fixme').css({position:'fixed',top:'35%',right:'12%',width:'370px',zIndex:99});}if(currentScroll>=2500){$('.fixme').css({position:'static'});}});

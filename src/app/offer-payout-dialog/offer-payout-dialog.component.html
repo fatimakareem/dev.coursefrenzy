@@ -1,0 +1,137 @@
+<div class="card"> <button _ngcontent-c8="" aria-label="Close" class="close" tabindex="-1" type="button"><span
+  _ngcontent-c8="" aria-hidden="true">×</span></button>
+<div _ngcontent-c8="" class="card-header text-center" data-background-color="rose">
+<h4 _ngcontent-c8="" class="card-title"> Secure Payment</h4>
+</div>
+<div class="row checkout-select-box col-sm-12">
+<div class="">
+  <div id="section-pricing" class="text-center">
+      <div class="pricing-tenure-switcher center" data-container="#pricing-switch"> <span class="pts-left"
+              *ngIf="!isright" style="color: black">Saved Cards</span> <span class="pts-left"
+              *ngIf="isright">Saved Cards</span>
+          <div class="pts-switcher">
+              <div class="switch"> <input [(ngModel)]="isright" id="switch-toggle-pricing-tenure"
+                      class="switch-toggle switch-toggle-round" type="checkbox"> <label
+                      for="switch-toggle-pricing-tenure"></label> </div>
+          </div><span class="pts-right" *ngIf="!isright">Add New Card</span> <span class="pts-right"
+              *ngIf="isright" style="color: black">Add New Card</span>
+      </div>
+      <div id="pricing-switch" class="">
+          <div class="col-md-12" *ngIf="!isright">
+              <div class="col-lg-12 Saved-card-sel-list">
+                  <mat-form-field class="width-50per">
+                      <mat-select class="" placeholder="Select List" [(ngModel)]="model.cardNumber"
+                          [formControl]="Carddefault">
+                          <mat-option *ngFor="let card of res" [value]="card.id">{{card.nickname}}
+                          </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </div>
+          </div>
+          <div class="col-md-12" *ngIf="isright">
+              <div class="cart-body">
+                  <div class="credit-card-box">
+                      <div class="flip">
+                          <div class="front">
+                              <div class="chip"></div>
+                              <div class="logo"><svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                      height="47.834px" id="visa"
+                                      style="enable-background:new 0 0 47.834 47.834;" version="1.1"
+                                      viewBox="0 0 47.834 47.834" width="47.834px" x="0px"
+                                      xmlns="http://www.w3.org/2000/svg" y="0px">
+                                      <g _ngcontent-c5="">
+                                          <g _ngcontent-c5=""></g>
+                                      </g>
+                                  </svg></div>
+                              <div class="card-holder" style="top: 29px;left: 221px;"><label
+                                      _ngcontent-c5="">Cardholder</label>
+                                  <div _ngcontent-c5="">{{Holdername.value}}</div>
+                              </div>
+                              <div class="card-holder"><label _ngcontent-c5="">Card Number</label>
+                                  <div _ngcontent-c5="">{{model.cardNumber}}</div>
+                              </div>
+                              <div class="card-expiration-date"><label _ngcontent-c5="">Expiry Date</label>
+                                  <div _ngcontent-c5="">{{ExpiryDateForm.value}}</div>
+                              </div>
+                          </div>
+                          <div class="back">
+                              <div class="strip"></div>
+                              <div class="logo"><svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                      height="47.834px" id="visa"
+                                      style="enable-background:new 0 0 47.834 47.834;" version="1.1"
+                                      viewBox="0 0 47.834 47.834" width="47.834px" x="0px"
+                                      xmlns="http://www.w3.org/2000/svg" y="0px">
+                                      <g _ngcontent-c5="">
+                                          <g _ngcontent-c5=""></g>
+                                      </g>
+                                  </svg></div>
+                              <div class="card-expiration-date"><label _ngcontent-c5="">Expiry Date</label>
+                                  <div _ngcontent-c5="">{{ExpiryDateForm.value}}</div>
+                              </div>
+                              <div class="ccv"><label _ngcontent-c5="">CCV</label>
+                                  <div _ngcontent-c5="">{{CardCodeForm.value}}</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <form
+                      (ngSubmit)="!ExpiryDateForm.hasError('required') && !ExpiryDateForm.hasError('pattern') && CardCodeForm.hasError('minlength')&& !CardCodeForm.hasError('maxlength')&& !CardNumberForm.hasError('required') && !CardNumberForm.hasError('pattern') && onSubmit()"
+                      #f="ngForm" id="videoform" class="form-horizontal row sh-signup-form-fix"
+                      name="videoform" method="post">
+                      <div class="col-lg-12 center-div col-md-12">
+                          <div class="panel-info contact_form">
+                              <div class="panel-body padding-bottom-">
+                                  <mat-form-field class="col-lg-6 mat-size">
+                                      <mat-select placeholder="Type Card" [(ngModel)]="model.cardtype"
+                                          [formControl]="CardtypeForm"
+                                          (change)="ShowButton(CardtypeForm.value)">
+                                          <mat-option *ngFor="let card_get_datat of card_opeation"
+                                              [value]="card_get_datat.value">{{card_get_datat.viewValue}}
+                                          </mat-option>
+                                      </mat-select>
+                                  </mat-form-field>
+                                  <mat-form-field class="col-lg-6 mat-size"> <input matInput
+                                          placeholder="Credit Card Number" [textMask]="{mask: cardmask}"
+                                          [formControl]="CardNumberForm" [(ngModel)]="model.cardNumber"
+                                          required>
+                                      <mat-error *ngIf="CardNumberForm.hasError('pattern')"> Please enter a
+                                          valid card number. Only Numerics are Allowed. </mat-error>
+                                      <mat-error *ngIf="CardNumberForm.hasError('required')"> Card number is
+                                          <strong>required</strong> </mat-error>
+                                  </mat-form-field>
+                                  <mat-form-field class="col-lg-6 mat-size"> <input matInput
+                                          placeholder="Expiry Date" [formControl]="ExpiryDateForm"
+                                          [(ngModel)]="model.expirationdate" [textMask]="{mask: mask}" #exp
+                                          (change)="chek(exp.value)" required>
+                                      <mat-error *ngIf="ExpiryDateForm.hasError('required')"> Expiry Date is
+                                          <strong>required</strong> </mat-error>
+                                      <mat-error *ngIf="ExpiryDateForm.hasError('pattern')"> Expiry Date
+                                          should in <strong>mm/yy</strong> </mat-error> <span
+                                          class="card-error" *ngIf="expirydate <='18'"> Invalid Expiry Date
+                                      </span>
+                                  </mat-form-field>
+                                  <mat-form-field class="col-lg-6 mat-size"> <input matInput
+                                          placeholder="CardCode" [formControl]="CardCodeForm"
+                                          [(ngModel)]="model.cardcod" required [textMask]="{mask: ccvmask}">
+                                      <mat-error *ngIf="CardCodeForm.hasError('minlength')"> Maximum Length of
+                                          <strong>CardCode can be 3 characters</strong> </mat-error>
+                                      <mat-error *ngIf="CardCodeForm.hasError('maxlength')"> Maximum Length of
+                                          <strong>CardCode can be 4 characters</strong> </mat-error>
+                                  </mat-form-field>
+                                  <mat-form-field class="col-lg-6 mat-size"> <input matInput
+                                          placeholder="Card Holder" [formControl]="Holdername"
+                                          [(ngModel)]="model.holdername" required> </mat-form-field>
+                                  <!-- <mat-form-field class="example-full-width mat-size" *ngIf="totalflag"> <input matInput placeholder="Total Amount" [formControl]="TotalAmountForm" value="{{total}}" [(ngModel)]="model.amount" required readonly> </mat-form-field> -->
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="col-sm-12"> <button type="submit" class="btn-file pull-right" (click)="onSubmit()">Place
+      Order</button> </div>
+</div>
+</div>
