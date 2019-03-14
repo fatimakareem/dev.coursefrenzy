@@ -21,7 +21,7 @@
                         </div>
                 </div>
                 <div class="card-content">
-                    <mat-form-field class="example-full-width mat-size margin-bottom-20"> <input matInput
+                    <mat-form-field class="example-full-width mat-size margin-bottom-40"> <input matInput
                             placeholder="Username" [formControl]="nameFormControl" [(ngModel)]="model.username"
                             (focusout)="getusername()" autocomplete="off" required> <span class="pointer"
                             *ngIf="model.username" mat-icon-button matSuffix aria-label="Clear"
@@ -35,7 +35,7 @@
                         <mat-error *ngIf="nameFormControl.hasError('maxlength')"> Maximum Length of <strong>Username can
                                 be 50 characters</strong> </mat-error>
                     </mat-form-field>
-                    <mat-form-field class="example-full-width mat-size margin-bottom-20"> <input matInput type="text"
+                    <mat-form-field class="example-full-width mat-size margin-bottom-40"> <input matInput type="text"
                             placeholder="Email" [formControl]="emailFormControl" [(ngModel)]="model.email"
                             (focusout)="getemail()" autocomplete="off" required> <span class="pointer"
                             *ngIf="model.email" tabindex=-11 mat-icon-button matSuffix aria-label="Clear"
@@ -49,7 +49,7 @@
                         <mat-error *ngIf="emailFormControl.hasError('maxlength')"> Maximum Length of <strong>Email can
                                 be 100 characters</strong> </mat-error>
                     </mat-form-field>
-                    <mat-form-field class="example-full-width mat-size margin-bottom-20"> <input matInput
+                    <mat-form-field class="example-full-width mat-size margin-bottom-40"> <input matInput
                             [type]="hide ? 'password' : 'text'" #password placeholder="Password"
                             [formControl]="passwordFormControl" [(ngModel)]="model.Password" required>
                         <mat-icon class="pointer" data-toggle="tooltip" title="{{hide? 'Show' : 'Hide'}}Password"
@@ -64,7 +64,7 @@
                         <mat-error *ngIf="passwordFormControl.hasError('maxlength')"> Maximum Length of <strong>Password
                                 can be 30 characters</strong> </mat-error>
                     </mat-form-field>
-                    <mat-form-field class="example-full-width mat-size"> <input matInput
+                    <mat-form-field class="margin-bottom-10 example-full-width mat-size"> <input matInput
                             [type]="hide ? 'password' : 'text'" #password placeholder="Confirm Password"
                             [formControl]="confirmPasswordFormControl" [(ngModel)]="model.confirmPassword" required>
                         <mat-icon class="pointer" data-toggle="tooltip" title="{{hide? 'Show' : 'Hide'}}Password"

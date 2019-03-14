@@ -21,7 +21,7 @@
                         </div>
                 </div>
                 <div class="card-content padding-bottom-0">
-                    <mat-form-field class="example-full-width mat-size margin-bottom-20"> <input matInput
+                    <mat-form-field class="example-full-width mat-size margin-bottom-40"> <input matInput
                             placeholder="Username" tabindex=1 [formControl]="userFormControl"
                             [(ngModel)]="model.firstname" required> <span class="pointer" *ngIf="model.firstname"
                             matSuffix mat-icon-button aria-label="Clear" (click)="model.firstname=''">
@@ -32,7 +32,7 @@
                         <mat-error *ngIf="userFormControl.hasError('required')"> Username is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
-                    <mat-form-field class="example-full-width mat-size"> <input [type]="hide ? 'password' : 'text'"
+                    <mat-form-field class="margin-bottom-30 example-full-width mat-size"> <input [type]="hide ? 'password' : 'text'"
                             matInput placeholder="Password" tabindex=2 [formControl]="passwordFormControl"
                             [(ngModel)]="model.password" required>
                         <mat-icon class="pointer" data-toggle="tooltip" title="{{hide? 'Show' : 'Hide'}}Password"
@@ -49,7 +49,7 @@
                     <app-recapcha class="pull-right recapcha"></app-recapcha>
                 </div>
                 <div class="footer text-center"> <button type="submit" class="button signup-btn" tabindex=3> Sign
-                        in</button> <label class="font1"> Don't have an account? <a class="font1"
+                        in</button> <label class="font1"> Don't have an account? <a class="font1 color-blue"
                             [routerLink]="['/signup']"> Sign up </a></label> 
                             <div class="term-privacy text-center">
                                     <a  target="_blank" href="/terms">Terms of Service </a>
