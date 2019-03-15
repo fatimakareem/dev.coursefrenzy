@@ -1,7 +1,13 @@
 .privacy-check {
-    margin-top: 15px;
+    margin-top: 0px;
+    font-weight: 100;
 }
-
+.privacy-check a{
+    color: blue;
+}
+.privacy-check a:hover{
+    color: blue;
+}
 .privacy-check input {
     float: left;
     width: auto;
@@ -11,6 +17,9 @@
 .term-privacy a {
     padding: 0 20px;
     font-size: 14px;
+    color: blue;
+}
+.term-privacy a:hover {
     color: blue;
 }
 
@@ -31,13 +40,14 @@
 }
 
 .terms-wrapper h1 {
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 700;
-    margin: 0 0 10px
+    margin: 0 0 10px;
+    color: #000;
 }
 
 .terms-wrapper h2 {
-    font-size: 30px;
+    font-size: 22px;
     font-weight: 700;
     margin: 0
 }
@@ -46,12 +56,12 @@
     margin: 0;
     font-style: italic;
     color: #000;
-    font-size: 18px;
+    font-size: 12px;
 }
 
 .terms-wrapper h4 {
-    font-size: 18px;
-    line-height: 27px;
+    font-size: 12px;
+    line-height: 19px;
     margin: 0;
     color: #000;
 }
@@ -69,11 +79,10 @@
 
 .terms-wrapper ol li,
 .terms-wrapper ul li {
-    margin: 0 0 8px;
-    font-size: 18px;
+    font-size: 12px;
     font-weight: 400;
     color: #000;
-    line-height: 24px;
+    line-height: 19px;
 }
 
 .terms-wrapper ol li {
@@ -81,7 +90,7 @@
 }
 
 .terms-wrapper ul {
-    padding: 0 0 0 40px;
+    padding: 0 0 0 30px;
 }
 
 .swal2-popup .swal2-title {
@@ -153,7 +162,7 @@
 }
 .sh-signup-form-fix .mat-form-field-appearance-legacy .mat-form-field-label{
     color: rgba(0,0,0,.54);
-    font-size: 18px;
+    font-size: 16px;
     /* margin: 10px 0 0; */
 }
 .sh-signup-form-fix .mat-form-field-underline {
@@ -167,8 +176,8 @@
 }
 .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
 .sh-signup-form-fix .mat-input-element.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label {
-    -webkit-transform: translateY(-22px) scale(.95) perspective(100px) translateZ(0)!important;
-    transform: translateY(-22px) scale(.95) perspective(100px) translateZ(0)!important;
+    -webkit-transform: translateY(-22px) scale(.88) perspective(100px) translateZ(0)!important;
+    transform: translateY(-22px) scale(.88) perspective(100px) translateZ(0)!important;
 }
 .sh-signup-form-fix .mat-hint{
     color: rgba(0,0,0,.54);
@@ -5571,7 +5580,8 @@ body {
 }
 
 .card .card-content {
-    padding: 25px 20px 7px
+    /* padding: 25px 20px 7px; */
+    padding: 14px 20px 7px;
 }
 
 .input-group {
@@ -5970,7 +5980,7 @@ app-admin-panel:after {
 .list-sidebar li i {
     margin: -3px 5px 0 0;
     vertical-align: middle;
-    color: #f80000
+    color: #000;
 }
 
 .search-outer {
@@ -6536,8 +6546,21 @@ app-admin-panel {
 }
 
 .teacher_holder {
-    margin: 100px 0!important
+    margin: 35px 0!important
 }
+.teacher_holder .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+    background-color: #000;
+}
+.teacher_holder .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+    background-color: #000 !important;
+}
+.teacher_holder .material-icons{
+    margin: 0;
+}
+.teacher_holder .mat-step-header.cdk-keyboard-focused, .mat-step-header.cdk-program-focused, .mat-step-header:hover{
+    background: none !important;
+}
+
 
 .header-holder:after {
     display: table;

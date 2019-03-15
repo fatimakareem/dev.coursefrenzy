@@ -1,1 +1,223 @@
-<app-loader></app-loader><div class="clearfix text-center"> <div class="col-sm-12"> <h2 _ngcontent-c19="" class="inst-heading">All Courses</h2> </div></div><div class="admin-cont"> <mat-tab-group> <mat-tab class="" label="Pending Courses"> <div class="row"> <div class="col-md-12 margin-t-b20"> <div class="text-center ad-search"> <input class=" search-bg__text form-control input-lg " type="search" name=querysearch [(ngModel)]="query" #querysearch="ngModel" (keyup)="filter(query)" placeholder="Search for Pending courses" id="textsearch"> <button class="search-bg__btn" type="button" (click)="filter(query)">Search</button> </div></div></div><div class="row" *ngIf="NoSearchResult"> <h2>No Result Found! Please Try Again!</h2> </div><div class="courses-div" *ngFor="let list of pendingCoursesList?.courses; let i=index"> <div class="row wow fadeIn"> <div class="col-md-3 col-sm-4 col-xs-12"> <div class="popular-courses"> <div class="post-media entry"> <div class="ribbon-wrapper-green"> <div class="ribbon-green">Featured</div></div><div class="img-holder"> <img *ngIf="list.course_image" src="{{ImageUrl}}{{list.course_image}}" alt="" class="img-responsive imgheight"> </div><div class="magnifier"> <div class="shop-bottom clearfix"> <a (click)="reject_course_confirmation(list.id, i)" title="Reject Course"><i class="fa fa-times" aria-hidden="true"></i></a> <a (click)="add_course_confirmation(list.id, i)" title="Approve Course"><i class="fa fa-check label-success" aria-hidden="true"></i></a> </div></div></div></div></div><div class="min-height col-md-9 col-sm-8 col-xs-12"> <div class="col-lg-12 about-module"> <span *ngIf="list.skill==='B'" class="label label-success">IDEAL FOR BEGINNERS</span> <span *ngIf="list.skill==='I'" class="label label-success">IDEAL FOR MEDIOCRES</span> <span *ngIf="list.skill==='A'" class="label label-success">IDEAL FOR EXPERTS</span> <button type="button" title="Reject Course" (click)="reject_course_confirmation(list.id, i)" class="btn btn-primary color-red">Reject<i class="fa fa-times" aria-hidden="true"></i></button> <button type="button" title="Approve Course" (click)="add_course_confirmation(list.id, i)" class="btn label-success color-green">Approve<i class="fa fa-check label-success" aria-hidden="true"></i></button> <div class="clearfix"></div><h3>{{list.name}}</h3> <p>{{list.overview}}</p></div><div class="col-lg-12 large-post-meta"> <span class="avatar"><a [routerLink]="['/profile']"><img src="../../assets/upload/avatar_01.png" class="img-circle">{{list?.user_id?.username}}</a></span> <small>&#124;</small> <span><a><i class="fa fa-clock-o"></i>{{list.postDate | date}}</a></span> <small class="hidden-xs">&#124;</small> <span class="hidden-xs"><a><i class="fa fa-dollar"></i>{{list.actual_price}}</a></span> <small class="hidden-xs">&#124;</small> <span *ngIf="list.skill==='A'" class="hidden-xs"><a><i class="fa fa-users"></i> Advanced Level</a></span> <span *ngIf="list.skill==='B'" class="hidden-xs"><a><i class="fa fa-users"></i> Begineer Level</a></span> <span *ngIf="list.skill==='I'" class="hidden-xs"><a><i class="fa fa-users"></i> Intermediate Level</a></span> <span class="hidden-xs"><a><i class="fa fa-users"></i> English</a></span> </div></div></div></div><hr class="invis1"> <nav class="text-center"> <ul class=" pagination pagination-lg"> <li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link" onclick="topFunction()" (click)="setPage3(1)" aria-label="Previous"> First </a> </li><li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link" onclick="topFunction()" (click)="setPage3(pager.currentPage - 1)" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li><li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage===page}" onclick="topFunction()" (click)="setPage3(page)"><a class="page-link">{{page}}</a></li><li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a class="page-link" onclick="topFunction()" (click)="setPage3(pager.currentPage + 1)" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li><li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a class="page-link" onclick="topFunction()" (click)="setPage3(pager.totalPages)" aria-label="Next"> Last </a> </li></ul> </nav> </mat-tab> <mat-tab class="" label="Approved Courses"> <hr class="invis"> <div class="courses-div" *ngFor="let list of approvedCoursesList"> <div class="row wow fadeIn"> <div class="col-md-3 col-sm-3"> <div class="popular-courses"> <div class="post-media entry"> <div class="ribbon-wrapper-green"> <div class="ribbon-green">Featured</div></div><div class="img-holder"> <img *ngIf="list.course.course_image" src="{{ImageUrl}}{{list.course.course_image}}" alt="" class="img-responsive imgheight"> </div></div></div></div><div class="col-md-9 col-sm-9"> <div class="about-module"> <span *ngIf="list.course.skill==='B'" class="label label-success">IDEAL FOR BEGINNERS</span> <span *ngIf="list.course.skill==='I'" class="label label-success">IDEAL FOR MEDIOCRES</span> <span *ngIf="list.course.skill==='A'" class="label label-success">IDEAL FOR EXPERTS</span> <div class="clearfix"></div><h3>{{list.course.name}}</h3> <p>{{list.course.overview}}</p><div class="large-post-meta"> <span class="avatar"><a [routerLink]="['/profile']"><img src="../../assets/upload/avatar_01.png" class="img-circle">{{list?.user_id?.username}}</a></span> <small>&#124;</small> <span><a><i class="fa fa-clock-o"></i>{{list.course.postDate | date}}</a></span> <small class="hidden-xs">&#124;</small> <span class="hidden-xs"><a><i class="fa fa-dollar"></i>{{list.course.actual_price}}</a></span> <small class="hidden-xs">&#124;</small> <span *ngIf="list.course.skill==='A'" class="hidden-xs"><a><i class="fa fa-users"></i> Advanced Level</a></span> <span *ngIf="list.course.skill==='B'" class="hidden-xs"><a><i class="fa fa-users"></i> Begineer Level</a></span> <span *ngIf="list.course.skill==='I'" class="hidden-xs"><a><i class="fa fa-users"></i> Intermediate Level</a></span> <span class="hidden-xs"><a><i class="fa fa-users"></i> English</a></span> </div></div></div></div></div><hr class="invis1"> <nav class="text-center"> <ul class=" pagination pagination-lg"> <li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link" onclick="topFunction()" (click)="setPage2(1)" aria-label="Previous"> First </a> </li><li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link" onclick="topFunction()" (click)="setPage2(pager.currentPage - 1)" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li><li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage===page}" onclick="topFunction()" (click)="setPage2(page)"><a class="page-link">{{page}}</a></li><li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a class="page-link" onclick="topFunction()" (click)="setPage2(pager.currentPage + 1)" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li><li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a class="page-link" onclick="topFunction()" (click)="setPage2(pager.totalPages)" aria-label="Next"> Last </a> </li></ul> </nav> </mat-tab> <mat-tab class="" label="Rejected Courses"> <div class="courses-div" *ngFor="let list of rejectedCoursesList?.courses"> <div class="row wow fadeIn"> <div class="col-md-3 col-sm-3"> <div class="popular-courses"> <div class="post-media entry"> <div class="ribbon-wrapper-green"> <div class="ribbon-green">Featured</div></div><div class="img-holder"> <img *ngIf="list.course_image" src="{{ImageUrl}}{{list.course_image}}" alt="" class="img-responsive imgheight"> </div></div></div></div><div class="col-md-9 col-sm-9"> <div class="about-module"> <span *ngIf="list.skill==='B'" class="label label-success">IDEAL FOR BEGINNERS</span> <span *ngIf="list.skill==='I'" class="label label-success">IDEAL FOR MEDIOCRES</span> <span *ngIf="list.skill==='A'" class="label label-success">IDEAL FOR EXPERTS</span> <div class="clearfix"></div><h3>{{list.name}}</h3> <p>{{list.overview}}</p><div class="large-post-meta"> <span class="avatar"><a [routerLink]="['/profile']"><img src="../../assets/upload/avatar_01.png" class="img-circle">{{list?.user_id?.username}}</a></span> <small>&#124;</small> <span><a><i class="fa fa-clock-o"></i>{{list.postDate | date}}</a></span> <small class="hidden-xs">&#124;</small> <span class="hidden-xs"><a><i class="fa fa-dollar"></i>{{list.actual_price}}</a></span> <small class="hidden-xs">&#124;</small> <span *ngIf="list.skill==='A'" class="hidden-xs"><a><i class="fa fa-users"></i> Advanced Level</a></span> <span *ngIf="list.skill==='B'" class="hidden-xs"><a><i class="fa fa-users"></i> Begineer Level</a></span> <span *ngIf="list.skill==='I'" class="hidden-xs"><a><i class="fa fa-users"></i> Intermediate Level</a></span> <span class="hidden-xs"><a><i class="fa fa-users"></i> English</a></span> </div></div></div></div></div><hr class="invis1"> <nav class="text-center"> <ul class=" pagination pagination-lg"> <li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link" onclick="topFunction()" (click)="setPage(1)" aria-label="Previous"> First </a> </li><li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link" onclick="topFunction()" (click)="setPage(pager.currentPage - 1)" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li><li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage===page}" onclick="topFunction()" (click)="setPage(page)"><a class="page-link">{{page}}</a></li><li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a class="page-link" onclick="topFunction()" (click)="setPage(pager.currentPage + 1)" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li><li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a class="page-link" onclick="topFunction()" (click)="setPage(pager.totalPages)" aria-label="Next"> Last </a> </li></ul> </nav> </mat-tab> <br></mat-tab-group></div>
+<app-loader></app-loader>
+<div class="clearfix text-center">
+    <div class="col-sm-12">
+        <h2 _ngcontent-c19="" class="inst-heading">All Courses</h2>
+    </div>
+</div>
+<div class="admin-cont">
+    <mat-tab-group>
+        <mat-tab class="" label="Pending Courses">
+            <div class="row">
+                <div class="col-md-12 margin-t-b20">
+                    <div class="text-center ad-search"> <input class=" search-bg__text form-control input-lg "
+                            type="search" name=querysearch [(ngModel)]="query" #querysearch="ngModel"
+                            (keyup)="filter(query)" placeholder="Search for Pending courses" id="textsearch"> <button
+                            class="search-bg__btn" type="button" (click)="filter(query)">Search</button> </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="NoSearchResult">
+                <h2>No Result Found! Please Try Again!</h2>
+            </div>
+            <div class="courses-div" *ngFor="let list of pendingCoursesList?.courses; let i=index">
+                <div class="row wow fadeIn">
+                    <div class="col-md-3 col-sm-4 col-xs-12">
+                        <div class="popular-courses">
+                            <div class="post-media entry">
+                                <div class="ribbon-wrapper-green">
+                                    <div class="ribbon-green">Featured</div>
+                                </div>
+                                <div class="img-holder"> <img *ngIf="list.course_image"
+                                        src="{{ImageUrl}}{{list.course_image}}" alt="" class="img-responsive imgheight">
+                                </div>
+                                <div class="magnifier">
+                                    <div class="shop-bottom clearfix"> <a
+                                            (click)="reject_course_confirmation(list.id, i)" title="Reject Course"><i
+                                                class="fa fa-times" aria-hidden="true"></i></a> <a
+                                            (click)="add_course_confirmation(list.id, i)" title="Approve Course"><i
+                                                class="fa fa-check label-success" aria-hidden="true"></i></a> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="min-height col-md-9 col-sm-8 col-xs-12">
+                        <div class="col-lg-12 about-module"> <span *ngIf="list.skill==='B'"
+                                class="label label-success">IDEAL FOR BEGINNERS</span> <span *ngIf="list.skill==='I'"
+                                class="label label-success">IDEAL FOR MEDIOCRES</span> <span *ngIf="list.skill==='A'"
+                                class="label label-success">IDEAL FOR EXPERTS</span> <button type="button"
+                                title="Reject Course" (click)="reject_course_confirmation(list.id, i)"
+                                class="btn btn-primary color-red">Reject<i class="fa fa-times"
+                                    aria-hidden="true"></i></button> <button type="button" title="Approve Course"
+                                (click)="add_course_confirmation(list.id, i)"
+                                class="btn label-success color-green">Approve<i class="fa fa-check label-success"
+                                    aria-hidden="true"></i></button>
+                            <div class="clearfix"></div>
+                            <h3>{{list.name}}</h3>
+                            <p>{{list.overview}}</p>
+                        </div>
+                        <div class="col-lg-12 large-post-meta"> <span class="avatar"><a [routerLink]="['/profile']"><img
+                                        src="../../assets/upload/avatar_01.png"
+                                        class="img-circle">{{list?.user_id?.username}}</a></span> <small>&#124;</small>
+                            <span><a><i class="fa fa-clock-o"></i>{{list.postDate | date}}</a></span> <small
+                                class="hidden-xs">&#124;</small> <span class="hidden-xs"><a><i
+                                        class="fa fa-dollar"></i>{{list.actual_price}}</a></span> <small
+                                class="hidden-xs">&#124;</small> <span *ngIf="list.skill==='A'" class="hidden-xs"><a><i
+                                        class="fa fa-users"></i> Advanced Level</a></span> <span
+                                *ngIf="list.skill==='B'" class="hidden-xs"><a><i class="fa fa-users"></i> Begineer
+                                    Level</a></span> <span *ngIf="list.skill==='I'" class="hidden-xs"><a><i
+                                        class="fa fa-users"></i> Intermediate Level</a></span> <span
+                                class="hidden-xs"><a><i class="fa fa-users"></i> English</a></span> </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="invis1">
+            <nav class="text-center">
+                <ul class=" pagination pagination-lg">
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link"
+                            onclick="topFunction()" (click)="setPage3(1)" aria-label="Previous"> First </a> </li>
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link"
+                            onclick="topFunction()" (click)="setPage3(pager.currentPage - 1)" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>
+                    <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage===page}"
+                        onclick="topFunction()" (click)="setPage3(page)"><a class="page-link">{{page}}</a></li>
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a
+                            class="page-link" onclick="topFunction()" (click)="setPage3(pager.currentPage + 1)"
+                            aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+                        </a> </li>
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a
+                            class="page-link" onclick="topFunction()" (click)="setPage3(pager.totalPages)"
+                            aria-label="Next"> Last </a> </li>
+                </ul>
+            </nav>
+        </mat-tab>
+        <mat-tab class="" label="Approved Courses">
+            <hr class="invis">
+            <div class="courses-div" *ngFor="let list of approvedCoursesList">
+                <div class="row wow fadeIn">
+                    <div class="col-md-3 col-sm-4 col-xs-12">
+                        <div class="popular-courses">
+                            <div class="post-media entry">
+                                <div class="ribbon-wrapper-green">
+                                    <div class="ribbon-green">Featured</div>
+                                </div>
+                                <div class="img-holder"> <img *ngIf="list.course.course_image"
+                                        src="{{ImageUrl}}{{list.course.course_image}}" alt=""
+                                        class="img-responsive imgheight"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="min-height col-md-9 col-sm-8 col-xs-12">
+                        <div class="about-module"> <span *ngIf="list.course.skill==='B'"
+                                class="label label-success">IDEAL FOR BEGINNERS</span> <span
+                                *ngIf="list.course.skill==='I'" class="label label-success">IDEAL FOR MEDIOCRES</span>
+                            <span *ngIf="list.course.skill==='A'" class="label label-success">IDEAL FOR EXPERTS</span>
+                            <div class="clearfix"></div>
+                            <h3>{{list.course.name}}</h3>
+                            <p>{{list.course.overview}}</p>
+
+
+                            
+                        </div>
+
+                        <div class="col-lg-12 large-post-meta"> <span class="avatar"><a [routerLink]="['/profile']"><img
+                            src="../../assets/upload/avatar_01.png"
+                            class="img-circle">{{list?.user_id?.username}}</a></span>
+                <small>&#124;</small> <span><a><i
+                            class="fa fa-clock-o"></i>{{list.course.postDate | date}}</a></span> <small
+                    class="hidden-xs">&#124;</small> <span class="hidden-xs"><a><i
+                            class="fa fa-dollar"></i>{{list.course.actual_price}}</a></span> <small
+                    class="hidden-xs">&#124;</small> <span *ngIf="list.course.skill==='A'"
+                    class="hidden-xs"><a><i class="fa fa-users"></i> Advanced Level</a></span> <span
+                    *ngIf="list.course.skill==='B'" class="hidden-xs"><a><i class="fa fa-users"></i>
+                        Begineer Level</a></span> <span *ngIf="list.course.skill==='I'"
+                    class="hidden-xs"><a><i class="fa fa-users"></i> Intermediate Level</a></span> <span
+                    class="hidden-xs"><a><i class="fa fa-users"></i> English</a></span> </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="invis1">
+            <nav class="text-center">
+                <ul class=" pagination pagination-lg">
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link"
+                            onclick="topFunction()" (click)="setPage2(1)" aria-label="Previous"> First </a> </li>
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link"
+                            onclick="topFunction()" (click)="setPage2(pager.currentPage - 1)" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>
+                    <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage===page}"
+                        onclick="topFunction()" (click)="setPage2(page)"><a class="page-link">{{page}}</a></li>
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a
+                            class="page-link" onclick="topFunction()" (click)="setPage2(pager.currentPage + 1)"
+                            aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+                        </a> </li>
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a
+                            class="page-link" onclick="topFunction()" (click)="setPage2(pager.totalPages)"
+                            aria-label="Next"> Last </a> </li>
+                </ul>
+            </nav>
+        </mat-tab>
+        <mat-tab class="" label="Rejected Courses">
+            <div class="courses-div" *ngFor="let list of rejectedCoursesList?.courses">
+                <div class="row wow fadeIn">
+                    <div class="col-md-3 col-sm-4 col-xs-12">
+                        <div class="popular-courses">
+                            <div class="post-media entry">
+                                <div class="ribbon-wrapper-green">
+                                    <div class="ribbon-green">Featured</div>
+                                </div>
+                                <div class="img-holder"> <img *ngIf="list.course_image"
+                                        src="{{ImageUrl}}{{list.course_image}}" alt="" class="img-responsive imgheight">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="min-height col-md-9 col-sm-8 col-xs-12">
+                        <div class="about-module"> <span *ngIf="list.skill==='B'" class="label label-success">IDEAL FOR
+                                BEGINNERS</span> <span *ngIf="list.skill==='I'" class="label label-success">IDEAL FOR
+                                MEDIOCRES</span> <span *ngIf="list.skill==='A'" class="label label-success">IDEAL FOR
+                                EXPERTS</span>
+                            <div class="clearfix"></div>
+                            <h3>{{list.name}}</h3>
+                            <p>{{list.overview}}</p>
+
+
+                            
+                        </div>
+
+                        <div class="col-lg-12 large-post-meta"> <span class="avatar"><a [routerLink]="['/profile']"><img
+                            src="../../assets/upload/avatar_01.png"
+                            class="img-circle">{{list?.user_id?.username}}</a></span>
+                <small>&#124;</small> <span><a><i
+                            class="fa fa-clock-o"></i>{{list.postDate | date}}</a></span> <small
+                    class="hidden-xs">&#124;</small> <span class="hidden-xs"><a><i
+                            class="fa fa-dollar"></i>{{list.actual_price}}</a></span> <small
+                    class="hidden-xs">&#124;</small> <span *ngIf="list.skill==='A'"
+                    class="hidden-xs"><a><i class="fa fa-users"></i> Advanced Level</a></span> <span
+                    *ngIf="list.skill==='B'" class="hidden-xs"><a><i class="fa fa-users"></i> Begineer
+                        Level</a></span> <span *ngIf="list.skill==='I'" class="hidden-xs"><a><i
+                            class="fa fa-users"></i> Intermediate Level</a></span> <span
+                    class="hidden-xs"><a><i class="fa fa-users"></i> English</a></span> </div>
+
+                    </div>
+                </div>
+            </div>
+            <hr class="invis1">
+            <nav class="text-center">
+                <ul class=" pagination pagination-lg">
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link"
+                            onclick="topFunction()" (click)="setPage(1)" aria-label="Previous"> First </a> </li>
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link"
+                            onclick="topFunction()" (click)="setPage(pager.currentPage - 1)" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>
+                    <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage===page}"
+                        onclick="topFunction()" (click)="setPage(page)"><a class="page-link">{{page}}</a></li>
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a
+                            class="page-link" onclick="topFunction()" (click)="setPage(pager.currentPage + 1)"
+                            aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+                        </a> </li>
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a
+                            class="page-link" onclick="topFunction()" (click)="setPage(pager.totalPages)"
+                            aria-label="Next"> Last </a> </li>
+                </ul>
+            </nav>
+        </mat-tab> <br>
+    </mat-tab-group>
+</div>

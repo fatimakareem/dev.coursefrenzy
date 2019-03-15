@@ -1,1 +1,82 @@
-<app-loader></app-loader><div class="container "> <div class="teacher_holder well"><mat-horizontal-stepper [linear]="isLinear"> <mat-step [stepControl]="firstFormGroup"> <div class="row"> <div class="col-md-4" [formGroup]="firstFormGroup"> <ng-template matStepLabel>Welcome</ng-template> <label class="font">Hello, You can teach online to thousands of students here. Online tutors teach a variety of subjects, including math, science, and English, as well as test preparations for GED, PSAT, SAT, GRE, GMAT and AP for students from around the world who range in age from elementary school to college. Teaching experience and a college degree in subject taught are required. </label> <br><div> <button type="button" mat-raised-button color="primary" matStepperNext>Tell Me More</button> </div></div><div class="col-md-6 col-md-offset-2"> <img src="../../assets/img/Instructorquestions/q1.png"> </div></div></mat-step> <mat-step [stepControl]="secondFormGroup"> <div class="row"> <div class="col-md-4" [formGroup]="secondFormGroup"> <ng-template matStepLabel> Videos </ng-template> <label class="font">Getting Setup</label> <br><label class="font">Feel free to make videos and teach thousands of students across the globe using this prestigious platform of CourseFrenzy</label> <br><br><label class="font">Have you created videos before?</label> <br><div> <button type="button" mat-raised-button matStepperNext> No </button> <button type="button" mat-raised-button matStepperNext>A Little </button> <button type="button" mat-raised-button matStepperNext> Often </button> </div><br></div><div class="col-md-6 col-md-offset-2"> <img src="../../assets/img/Instructorquestions/q2.png"> </div></div></mat-step> <mat-step [stepControl]="thirdFormGroup"> <div class="row"> <div class="col-md-4" [formGroup]="thirdFormGroup"> <ng-template matStepLabel>Teaching</ng-template> <label class="font">Creating a Course</label> <br><label class="font">Feel free to make videos and teach thousands of students across the globe using this prestigious platform of CourseFrenzy</label> <br><br><label class="font">Have you ever taught before?</label> <br><div> <button type="button" mat-raised-button matStepperNext name="teach1" value="No"> No </button> <button type="button" mat-raised-button matStepperNext name="teach2" value="A Little">A Little </button> <button type="button" mat-raised-button matStepperNext name="teach3" value="Often"> Often </button> </div><br></div><div class="col-md-6 col-md-offset-2"> <img class="max-width-100" src="../../assets/img/Instructorquestions/q3.png"> </div></div></mat-step> <mat-step [stepControl]="fourthFormGroup"> <div class="row"> <div class="col-md-4" [formGroup]="fourthFormGroup"> <ng-template matStepLabel>Audience</ng-template> <label class="font">Publishing a Course</label> <br><label class="font">Feel free to make videos and teach thousands of students across the globe using this prestigious platform of CourseFrenzy</label> <br><br><label class="font">Do you have an existing audience for your course?</label> <br><div> <button type="button" mat-raised-button matStepperNext name="audience1" value="No"> No </button> <button type="button" mat-raised-button matStepperNext name="audience2" value="Yes"> Yes </button> </div><br></div><div class="col-md-6 col-md-offset-2"> <img src="../../assets/img/Instructorquestions/q4.png"> </div></div></mat-step> <mat-step [stepControl]="fourthFormGroup"> <div class="row"> <div class="col-md-4" [formGroup]="fourthFormGroup"> <ng-template matStepLabel>Done</ng-template> <label class="font">You can do this</label> <br><label>Many of our instructors are able to publish their course within 30 days. Give it your best shot!</label> <br><div> <button type="button" mat-raised-button color="warn" matStepperPrevious>Start Over</button> <button mat-raised-button (click)="onClick()" color="primary" matStepperNext> Dashboard</button> </div></div><div class="col-md-6 col-md-offset-2"> <img class="max-width-100" src="../../assets/img/Instructorquestions/q5.png"> </div></div></mat-step> </mat-horizontal-stepper> </div></div>
+<app-loader></app-loader>
+<div class="container ">
+    <div class="teacher_holder well">
+        <mat-horizontal-stepper [linear]="isLinear">
+            <mat-step [stepControl]="firstFormGroup">
+                <div class="row">
+                    <div class="col-md-6" [formGroup]="firstFormGroup">
+                        <ng-template matStepLabel>Welcome</ng-template> <label class="font">Hello, You can teach online
+                            to thousands of students here. Online tutors teach a variety of subjects, including math,
+                            science, and English, as well as test preparations for GED, PSAT, SAT, GRE, GMAT and AP for
+                            students from around the world who range in age from elementary school to college. Teaching
+                            experience and a college degree in subject taught are required. </label> <br>
+                        <div> <button class="tabs-btns" type="button" color="primary" matStepperNext>Tell Me
+                                More</button> </div>
+                    </div>
+                    <div class="col-md-6 text-right"> <img src="../../assets/img/Instructorquestions/q1.png">
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <div class="row">
+                    <div class="col-md-6" [formGroup]="secondFormGroup">
+                        <ng-template matStepLabel> Videos </ng-template> <label class="font">Getting Setup</label>
+                        <br><label class="font">Feel free to make videos and teach thousands of students across the
+                            globe using this prestigious platform of CourseFrenzy</label> <br><br><label
+                            class="font">Have you created videos before?</label> <br>
+                        <div> <button type="button" class="tabs-btns" matStepperNext> No </button> <button type="button"
+                            class="tabs-btns" matStepperNext>A Little </button> <button type="button"
+                            class="tabs-btns" matStepperNext> Often </button> </div><br>
+                    </div>
+                    <div class="col-md-6 text-right"> <img src="../../assets/img/Instructorquestions/q2.png">
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="thirdFormGroup">
+                <div class="row">
+                    <div class="col-md-6" [formGroup]="thirdFormGroup">
+                        <ng-template matStepLabel>Teaching</ng-template> <label class="font">Creating a Course</label>
+                        <br><label class="font">Feel free to make videos and teach thousands of students across the
+                            globe using this prestigious platform of CourseFrenzy</label> <br><br><label
+                            class="font">Have you ever taught before?</label> <br>
+                        <div> <button type="button" class="tabs-btns" matStepperNext name="teach1" value="No"> No
+                            </button> <button type="button" class="tabs-btns" matStepperNext name="teach2"
+                                value="A Little">A Little </button> <button type="button" class="tabs-btns"
+                                matStepperNext name="teach3" value="Often"> Often </button> </div><br>
+                    </div>
+                    <div class="col-md-6 text-right"> <img class="max-width-100"
+                            src="../../assets/img/Instructorquestions/q3.png"> </div>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="fourthFormGroup">
+                <div class="row">
+                    <div class="col-md-6" [formGroup]="fourthFormGroup">
+                        <ng-template matStepLabel>Audience</ng-template> <label class="font">Publishing a Course</label>
+                        <br><label class="font">Feel free to make videos and teach thousands of students across the
+                            globe using this prestigious platform of CourseFrenzy</label> <br><br><label class="font">Do
+                            you have an existing audience for your course?</label> <br>
+                        <div> <button type="button" class="tabs-btns" matStepperNext name="audience1" value="No"> No
+                            </button> <button type="button" class="tabs-btns" matStepperNext name="audience2"
+                                value="Yes"> Yes </button> </div><br>
+                    </div>
+                    <div class="col-md-6 text-right"> <img src="../../assets/img/Instructorquestions/q4.png">
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="fourthFormGroup">
+                <div class="row">
+                    <div class="col-md-6" [formGroup]="fourthFormGroup">
+                        <ng-template matStepLabel>Done</ng-template> <label class="font">You can do this</label>
+                        <br><label>Many of our instructors are able to publish their course within 30 days. Give it your
+                            best shot!</label> <br>
+                        <div> <button type="button" class="tabs-btns" color="warn" matStepperPrevious>Start
+                                Over</button> <button class="tabs-btns" (click)="onClick()" color="primary"
+                                matStepperNext> Dashboard</button> </div>
+                    </div>
+                    <div class="col-md-6 text-right"> <img class="max-width-100"
+                            src="../../assets/img/Instructorquestions/q5.png"> </div>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+</div>

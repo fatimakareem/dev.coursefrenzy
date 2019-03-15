@@ -15,7 +15,7 @@
             <mat-error *ngIf="password.hasError('maxlength')"> Maximum Length of <strong>Password can be 30
                     characters</strong> </mat-error>
             <mat-error *ngIf="password.hasError('required')"> Current password is <strong>required</strong> </mat-error>
-        </mat-form-field> <br>
+        </mat-form-field>
         <mat-form-field class="example-full-width  mat-size"> <input matInput type="password" placeholder="New password"
                 name="newpassword1" [(ngModel)]="model.newpassword1" #newpassword1="ngModel" required
                 pattern='^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$'
@@ -30,7 +30,7 @@
                     characters</strong> </mat-error>
             <mat-error *ngIf="newpassword1.hasError('required')"> Current password is <strong>required</strong>
             </mat-error>
-        </mat-form-field> <br>
+        </mat-form-field>
         <mat-form-field class="example-full-width  mat-size"> <input matInput type="password"
                 placeholder="Confirm New password" name="newpassword2" [(ngModel)]="model.newpassword2"
                 #newpassword2="ngModel" required
