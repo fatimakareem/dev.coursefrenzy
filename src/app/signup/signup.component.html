@@ -77,16 +77,19 @@
                             Password must match </mat-error>
                     </mat-form-field>
                 </div>
-               <div class="col-lg-12 privacy-check">
-                    <input type="checkbox" value=""> 
-                    I have read and agree <a  target="_blank" href="/terms">Terms of Use</a> and <a  target="_blank" href="/privacy-policy">Privacy Policy</a>.
-               </div>
+               
 
 
 
                 <div class="margin-t-b-10 col-lg-12 col-xs-12" [ngClass]="{'has-error': f.submitted}">
                     <app-recapcha class="pull-right"></app-recapcha>
                 </div>
+                <div class="col-lg-12 privacy-check">
+                    <input type="checkbox" value=""> 
+                    I have read and agree <a  target="_blank" href="/terms">Terms of Use</a> and <a  target="_blank" href="/privacy-policy">Privacy Policy</a>.
+               </div>
+
+
                 <div class="footer text-center"> <button type="submit" class="button signup-btn"> Sign up</button>
                     <label class="font1"> Already have an account? <a class="font1" [routerLink]="['/login']"> Sign in
                         </a> </label> <br></div>

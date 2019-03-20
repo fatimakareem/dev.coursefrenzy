@@ -321,8 +321,7 @@ this.getcart();
       title: 'Success! <br> Successfuly added to wishlist.',
       showConfirmButton: false,
       width: '512px',
-      timer: 2000,
-      position: 'top-end'
+      timer: 2500,
     });
   }
 

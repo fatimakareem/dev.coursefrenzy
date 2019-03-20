@@ -163,6 +163,7 @@
 .sh-signup-form-fix .mat-form-field-appearance-legacy .mat-form-field-label{
     color: rgba(0,0,0,.54);
     font-size: 16px;
+    font-weight: 600;
     /* margin: 10px 0 0; */
 }
 .sh-signup-form-fix .mat-form-field-underline {
@@ -183,6 +184,12 @@
     color: rgba(0,0,0,.54);
     font-size: 14px;
 }
+.sh-signup-form-fix .mat-select{
+    margin-bottom: 5px;
+}
+
+
+
 /*  */
 
 
@@ -7466,6 +7473,7 @@ figcaption p i {
 
 .width-135px {
     width: 135px;
+    margin-top: 10px;
 }
 
 .clients-style {
