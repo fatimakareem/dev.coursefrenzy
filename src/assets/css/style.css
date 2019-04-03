@@ -7136,10 +7136,10 @@ app-admin-panel {
     padding: 10px 0!important;
     font-weight: 700
 }
-.download-here a{
+.download-here a, .footer-stores-img a{
     display: inline-block;
 }
-.download-here a img {
+.download-here a img, .footer-stores-img a img {
     width: 123px;
     height: 37px;
     margin-left: 2px;
