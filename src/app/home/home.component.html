@@ -95,7 +95,7 @@
                                         </figcaption>
                                     </figure>
                                 </a>
-                                <div class="product-list__content"> <a class="product-list__category"
+                                <div class="product-list__content"> <a class="product-list__category name-h"
                                         routerLink="/courses/single/{{bid_data?.course?.course.id}}">{{bid_data?.course?.course.name.slice(0, 50)}}<a
                                             *ngIf="bid_data.course.course.name.length>60"> ... </a>
                                         <div *ngIf="bid_data.course.course.name.length<40"> </div>
@@ -110,10 +110,10 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="pull-right linethrough"
+                                        <div class="pull-right color-black linethrough"
                                             *ngIf="bid_data?.course?.course.discounted_price>0">
                                             ${{bid_data?.course?.course.actual_price}}</div>
-                                        <div class="pull-right linethrough"
+                                        <div class="pull-right color-black linethrough"
                                             *ngIf="bid_data?.course?.course.discounted_price<=0"> Free </div><button
                                             type="button" class="btn btn1 bid"
                                             *ngIf="bid_data?.course?.course.actual_price!=0"
@@ -186,11 +186,15 @@
                                         </figure>
                                     </figure>
                                 </a>
-                                <div class="product-list__content"> <a class="product-list__category"
+                                <div class="product-list__content"> <a class="product-list__category name-h"
                                         routerLink="/courses/single/{{data?.course?.id}}">{{data?.course?.name.slice(0, 50)}}<a
                                             *ngIf="data?.course?.name.length>60"> ... </a>
                                         <div *ngIf="data?.course?.name.length<40"> </div>
                                     </a>
+                                    <a
+                                            routerLink="/user-profile/{{data?.course?.user_id?.id}}"
+                                            *ngIf="data?.course?.user_id.first_name && data?.course?.user_id.last_name"
+                                            class="product-list__category">By {{data?.course?.user_id.first_name}}{{data?.course?.user_id.last_name}}</a>
                                     <div class="slider-rating-bar">
                                         <div class="pull-left">
                                             <ul class="product-list__star-list">
@@ -200,14 +204,26 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="pull-right" *ngIf="data?.course?.actual_price!=0">
+                                        <div class="pull-right color-black" *ngIf="data?.course?.actual_price!=0">
                                             {{data?.course?.actual_price | currency:'USD'}}</div>
-                                        <div class="pull-right" *ngIf="data?.course?.actual_price<=0"> Free</div>
+                                        <div class="pull-right color-black" *ngIf="data?.course?.actual_price<=0"> Free</div>
                                     </div>
-                                    <div class="row btn-position-r"> <a
-                                            routerLink="/user-profile/{{data?.course?.user_id?.id}}"
-                                            *ngIf="data?.course?.user_id.first_name && data?.course?.user_id.last_name"
-                                            class="col-md-9 col-sm-7 col-lg-9 col-xs-7 product-list__category">{{data?.course?.user_id.first_name}}{{data?.course?.user_id.last_name}}</a>
+                                    <div class="row btn-position-r">
+                                        
+                                        <div class="icons">
+                                            <a class="material-icons wishlist"
+                                            title="Add to wishlist">
+                                            <div *ngIf="data?.course.inWishList==true"
+                                                (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
+                                                    class="fas fa-heart"></i></div>
+                                            <div *ngIf="data?.course.inWishList==false"
+                                                (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
+                                                    class="far fa-heart"></i></div>
+                                        </a> <a *ngIf="data?.course?.actual_price!=0" class="wishlist material-icons"
+                                            title="Add to Cart"
+                                            (click)="openDialog3(i, data?.course?.id)">add_shopping_cart</a>
+                                        </div>
+
                                         <a *ngIf="data?.course?.actual_price<=0"
                                             (click)="enrollCourse(i, data?.course?.id)" type="button"
                                             class="btn btn1 bid btn-position-a">Enroll Now</a> <a
@@ -215,19 +231,17 @@
                                             (click)="buyNowClick(i, data?.course?.id)" type="button"
                                             class="btn btn1 bid btn-position-a">Buy Now</a> </div>
                                 </div>
-                                <div class="product-list__item-info"> <a class="material-icons wishlist"
-                                        title="Add to wishlist">
-                                        <div *ngIf="data?.course.inWishList==true"
-                                            (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
-                                                class="fas fa-heart"></i></div>
-                                        <div *ngIf="data?.course.inWishList==false"
-                                            (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
-                                                class="far fa-heart"></i></div>
-                                    </a> <a *ngIf="data?.course?.actual_price!=0" class="wishlist material-icons"
-                                        title="Add to Cart"
-                                        (click)="openDialog3(i, data?.course?.id)">add_shopping_cart</a> <button
+                                <div class="product-list__item-info"> 
+                                    
+                                    
+                                    
+                                    <button
                                         type="button" class="btn btn1 bid" *ngIf="data?.course?.accept_offer==true"
-                                        (click)="AcceptDialog(data?.course?.id)">Accept Offer </button> </div>
+                                        (click)="AcceptDialog(data?.course?.id)">Accept Offer </button> 
+                                    
+                                    
+                                    
+                                    </div>
                             </li>
                         </ngx-slick>
                     </div>
@@ -272,11 +286,17 @@
                                         </figure>
                                     </figure>
                                 </a>
-                                <div class="product-list__content"> <a class="product-list__category"
+                                <div class="product-list__content"> <a class="product-list__category name-h"
                                         routerLink="/courses/single/{{data?.course?.id}}">{{data?.course?.name.slice(0, 50)}}<a
                                             *ngIf="data?.course?.name.length>60"> ... </a>
                                         <div *ngIf="data?.course?.name.length<40"></div>
                                     </a>
+
+                                    <a
+                                    routerLink="/user-profile/{{data?.course?.user_id?.id}}"
+                                    *ngIf="data?.course?.user_id.first_name && data?.course?.user_id.last_name"
+                                    class="product-list__category">By {{data?.course?.user_id.first_name}}{{data?.course?.user_id.last_name}}</a>
+
                                     <div class="slider-rating-bar">
                                         <div class="pull-left">
                                             <ul class="product-list__star-list">
@@ -286,14 +306,27 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="pull-right" *ngIf="data?.course?.actual_price!=0">
+                                        <div class="pull-right color-black" *ngIf="data?.course?.actual_price!=0">
                                             {{data?.course?.actual_price | currency:'USD'}}</div>
-                                        <div class="pull-right" *ngIf="data?.course?.actual_price<=0"> Free</div>
+                                        <div class="pull-right color-black" *ngIf="data?.course?.actual_price<=0"> Free</div>
                                     </div>
-                                    <div class="row btn-position-r"> <a
-                                            routerLink="/user-profile/{{data?.course?.user_id?.id}}"
-                                            *ngIf="data?.course?.user_id.first_name && data?.course?.user_id.last_name"
-                                            class="col-xs-12 product-list__category">{{data?.course?.user_id.first_name}}{{data?.course?.user_id.last_name}}</a>
+                                    <div class="row btn-position-r"> 
+
+                                        <div class="icons">
+                                                <a class="material-icons wishlist"
+                                                title="Add to wishlist">
+                                                <div *ngIf="data?.course.inWishList==true"
+                                                    (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
+                                                        class="fas fa-heart"></i></div>
+                                                <div *ngIf="data?.course.inWishList==false"
+                                                    (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
+                                                        class="far fa-heart"></i></div>
+                                            </a> <a *ngIf="data?.course?.actual_price!=0" class="wishlist material-icons"
+                                                title="Add to Cart"
+                                                (click)="openDialog3(i, data?.course?.id)">add_shopping_cart</a>
+                                        </div>
+
+
                                         <a *ngIf="data?.course?.actual_price>0"
                                             (click)="buyNowClick(i, data?.course?.id)" type="button"
                                             class="btn btn1 bid btn-position-a">Buy Now</a> <a
@@ -301,17 +334,8 @@
                                             (click)="enrollCourse(i, data?.course?.id)" type="button"
                                             class="btn btn1 bid btn-position-a">Enroll Now</a> </div>
                                 </div>
-                                <div class="product-list__item-info"> <a class="material-icons wishlist"
-                                        title="Add to wishlist">
-                                        <div *ngIf="data?.course.inWishList==true"
-                                            (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
-                                                class="fas fa-heart"></i></div>
-                                        <div *ngIf="data?.course.inWishList==false"
-                                            (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
-                                                class="far fa-heart"></i></div>
-                                    </a> <a *ngIf="data?.course?.actual_price!=0" class="wishlist material-icons"
-                                        title="Add to Cart"
-                                        (click)="openDialog3(i, data?.course?.id)">add_shopping_cart</a> <button
+                                <div class="product-list__item-info"> 
+                                     <button
                                         type="button" class="btn btn1 bid" *ngIf="data?.course?.accept_offer==true"
                                         (click)="AcceptDialog(data?.course?.id)">Accept Offer </button> </div>
                             </li>
@@ -358,11 +382,16 @@
                                         </figure>
                                     </figure>
                                 </a>
-                                <div class="product-list__content"> <a class="product-list__category"
+                                <div class="product-list__content "> <a class="product-list__category name-h"
                                         routerLink="/courses/single/{{data?.course?.id}}">{{data?.course?.name.slice(0, 50)}}<a
                                             *ngIf="data?.course?.name.length>60"> ... </a>
                                         <div *ngIf="data?.course?.name.length<40"> </div>
                                     </a>
+                                    <a
+                                    routerLink="/user-profile/{{data?.course?.user_id?.id}}"
+                                    *ngIf="data?.course?.user_id.first_name && data?.course?.user_id.last_name"
+                                    class="product-list__category">{{data?.course?.user_id.first_name}}{{data?.course?.user_id.last_name}}</a>
+
                                     <div class="slider-rating-bar">
                                         <div class="pull-left">
                                             <ul class="product-list__star-list">
@@ -372,14 +401,26 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="pull-right" *ngIf="data?.course?.actual_price!=0">
+                                        <div class="pull-right color-black" *ngIf="data?.course?.actual_price!=0">
                                             {{data?.course?.actual_price | currency:'USD'}}</div>
-                                        <div class="pull-right" *ngIf="data?.course?.actual_price<=0"> Free</div>
+                                        <div class="pull-right color-black" *ngIf="data?.course?.actual_price<=0"> Free</div>
                                     </div>
-                                    <div class="row btn-position-r"> <a
-                                            routerLink="/user-profile/{{data?.course?.user_id?.id}}"
-                                            *ngIf="data?.course?.user_id.first_name && data?.course?.user_id.last_name"
-                                            class="col-md-9 col-sm-7 col-lg-9 col-xs-7 product-list__category">{{data?.course?.user_id.first_name}}{{data?.course?.user_id.last_name}}</a>
+                                    <div class="row btn-position-r"> 
+
+                                        <div class="icons">
+                                                <a class="material-icons wishlist"
+                                                title="Add to wishlist">
+                                                <div *ngIf="data?.course.inWishList==true"
+                                                    (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
+                                                        class="fas fa-heart"></i></div>
+                                                <div *ngIf="data?.course.inWishList==false"
+                                                    (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
+                                                        class="far fa-heart"></i></div>
+                                            </a> <a *ngIf="data?.course?.actual_price!=0" class="wishlist material-icons"
+                                                title="Add to Cart"
+                                                (click)="openDialog3(i, data?.course?.id)">add_shopping_cart</a> 
+                                        </div>
+
                                         <a *ngIf="data?.course?.actual_price>0"
                                             (click)="buyNowClick(i, data?.course?.id)" type="button"
                                             class="btn btn1 bid btn-position-a">Buy Now</a> <a
@@ -387,17 +428,7 @@
                                             (click)="enrollCourse(i, data?.course?.id)" type="button"
                                             class="btn btn1 bid btn-position-a">Enroll Now</a> </div>
                                 </div>
-                                <div class="product-list__item-info"> <a class="material-icons wishlist"
-                                        title="Add to wishlist">
-                                        <div *ngIf="data?.course.inWishList==true"
-                                            (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
-                                                class="fas fa-heart"></i></div>
-                                        <div *ngIf="data?.course.inWishList==false"
-                                            (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
-                                                class="far fa-heart"></i></div>
-                                    </a> <a *ngIf="data?.course?.actual_price!=0" class="wishlist material-icons"
-                                        title="Add to Cart"
-                                        (click)="openDialog3(i, data?.course?.id)">add_shopping_cart</a> <button
+                                <div class="product-list__item-info"> <button
                                         type="button" class="btn btn1 bid" *ngIf="data?.course?.accept_offer==true"
                                         (click)="AcceptDialog(data?.course?.id)">Accept Offer </button> </div>
                             </li>
@@ -445,11 +476,17 @@
                                             </figure>
                                         </figure>
                                     </a>
-                                    <div class="product-list__content"> <a class="product-list__category"
+                                    <div class="product-list__content"> <a class="product-list__category name-h"
                                             routerLink="/courses/single/{{data?.course?.id}}">{{data?.course?.name.slice(0, 50)}}<a
                                                 *ngIf="data?.course?.name.length>60"> ... </a>
                                             <div *ngIf="data?.course?.name.length<40"> </div>
                                         </a>
+
+                                        <a
+                                        routerLink="/user-profile/{{data?.course?.user_id?.id}}"
+                                        *ngIf="data?.course?.user_id.first_name && data?.course?.user_id.last_name"
+                                        class="product-list__category">By {{data?.course?.user_id.first_name}}{{data?.course?.user_id.last_name}}</a>
+
                                         <div class="slider-rating-bar">
                                             <div class="pull-left">
                                                 <ul class="product-list__star-list">
@@ -459,14 +496,26 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="pull-right" *ngIf="data?.course?.actual_price!=0">
+                                            <div class="pull-right color-black" *ngIf="data?.course?.actual_price!=0">
                                                 {{data?.course?.actual_price | currency:'USD'}}</div>
-                                            <div class="pull-right" *ngIf="data?.course?.actual_price<=0"> Free </div>
+                                            <div class="pull-right color-black" *ngIf="data?.course?.actual_price<=0"> Free </div>
                                         </div>
-                                        <div class="row btn-position-r"> <a
-                                                routerLink="/user-profile/{{data?.course?.user_id?.id}}"
-                                                *ngIf="data?.course?.user_id.first_name && data?.course?.user_id.last_name"
-                                                class="col-md-9 col-sm-7 col-lg-9 col-xs-7 product-list__category">{{data?.course?.user_id.first_name}}{{data?.course?.user_id.last_name}}</a>
+                                        <div class="row btn-position-r"> 
+
+
+                                            <div class="icons">
+                                                    <a class="material-icons wishlist">
+                                                            <div *ngIf="data?.course.inWishList==true"
+                                                                (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
+                                                                    class="fas fa-heart" title="In wishlist"></i> </div>
+                                                            <div *ngIf="data?.course.inWishList==false"
+                                                                (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
+                                                                    class="far fa-heart" title="Add to wishlist"></i> </div>
+                                                        </a> <a *ngIf="data?.course?.actual_price!=0" class="wishlist material-icons"
+                                                            title="Add to Cart"
+                                                            (click)="openDialog3(i, data?.course?.id)">add_shopping_cart</a>
+                                            </div>
+
                                             <a *ngIf="data?.course?.actual_price>0"
                                                 (click)="buyNowClick(i, data?.course?.id)" type="button"
                                                 class="btn btn1 bid btn-position-a">Buy Now</a> <a
@@ -474,16 +523,7 @@
                                                 (click)="enrollCourse(i, data?.course?.id)" type="button"
                                                 class="btn btn1 bid btn-position-a">Enroll Now</a> </div>
                                     </div>
-                                    <div class="product-list__item-info"> <a class="material-icons wishlist">
-                                            <div *ngIf="data?.course.inWishList==true"
-                                                (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
-                                                    class="fas fa-heart" title="In wishlist"></i> </div>
-                                            <div *ngIf="data?.course.inWishList==false"
-                                                (click)="onclick(i, data?.course?.id,data?.course.inWishList)"><i
-                                                    class="far fa-heart" title="Add to wishlist"></i> </div>
-                                        </a> <a *ngIf="data?.course?.actual_price!=0" class="wishlist material-icons"
-                                            title="Add to Cart"
-                                            (click)="openDialog3(i, data?.course?.id)">add_shopping_cart</a> <button
+                                    <div class="product-list__item-info">  <button
                                             type="button" class="btn btn1 bid" *ngIf="data?.course?.accept_offer==true"
                                             (click)="AcceptDialog(data?.course?.id)">Accept Offer </button> </div>
                                 </li>

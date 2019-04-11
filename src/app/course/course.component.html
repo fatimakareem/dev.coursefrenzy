@@ -1,1 +1,209 @@
-<app-loader></app-loader><div class="wrapp-content slider"> <main class=""> <div class="container padding-bottom-10"> <div class="container-fluid homeslider-hide"> <div class="homeslider-hide bidSlider" *ngIf="Categories"> <ngx-slick class="homeSlider" #slickModal="slick-modal" [config]="slideConfig"> <div class="item" ngxSlickItem *ngFor="let category of Categories"> <div class="image"> <a routerLink='/courses/{{category.id}}'> <img class="img" src="{{catImageUrl}}{{category?.icon_Web_Home}}" onError="this.src='../../assets/img/default_thumbnail.png'"> </a> </div><div class="slide-overlay"> <h4 class="card-title"> <a routerLink='/cat_courses/{{category.id}}' tabindex="0">{{category?.name}}</a> </h4> </div></div></ngx-slick> </div><div class="clearfix"></div><div class=""> <div class="row radio-box"> <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> <h4 class=""> Level </h4> <div class="radio"> <label class="checkbox-font"> <input type="radio" name="level" checked=true (change)="checked1($event)">All Level </label> </div><div class="radio"> <label class="checkbox-font"> <input type="radio" name="level" (change)="checked2($event)">Beginners </label> </div><div class="radio"> <label class="checkbox-font"> <input type="radio" name="level" (change)="checked3($event)">Intermediate </label> </div><div class="radio"> <label class="checkbox-font"> <input type="radio" name="level" (change)="checked4($event)">Advance </label> </div></div><div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> <h4 class=""> Rating </h4> <div class="radio"> <label class="checkbox-font"> <input type="radio" name="rate" checked=true (change)="checked9($event)"> <div class="rating-box"> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> </div>All </label> </div><div class="radio"> <label class="checkbox-font"> <input type="radio" name="rate" (change)="checked5($event)"> <div class="rating-box"> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i> </div>4.0 & up 5.0 </label> </div><div class="radio"> <label class="checkbox-font"> <input type="radio" name="rate" (change)="checked6($event)"> <div class="rating-box"> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i> <i class="far fa-star"></i> </div>3.0 & up 4.0 </label> </div><div class="radio"> <label class="checkbox-font"> <input type="radio" name="rate" (change)="checked7($event)"> <div class="rating-box"> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> </div>2.0 & up 3.0 </label> </div><div class="radio"> <label class="checkbox-font"> <input type="radio" name="rate" (change)="checked8($event)"> <div class="rating-box"> <i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> </div>1.0 & up 2.0 </label> </div></div><div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> <h4 class=""> Price </h4> <div class="radio"> <label class="checkbox-font"> <input type="radio" name="price" checked=true (change)="checked10($event)">All </label> </div><div class="radio"> <label class="checkbox-font"> <input type="radio" name="price" (change)="checked11($event)">Paid </label> </div><div class="radio"> <label class="checkbox-font"> <input type="radio" name="price" (change)="checked12($event)">Free </label> </div></div></div><div class="padding-top-10"> <div class="row"> <div class="col-lg-12 text-center"> <h3 class="page-title-01 color-black margin-0">Filtered Courses</h3> </div><div class="col-lg-12 text-right"> <h4 class="found-lable">We Found{{total}}Courses</h4> </div></div></div><div class="padding-bottom-10"> <div class=""> <div class="courses-div" *ngIf="total==0"> No Courses Found </div><div class="courses-div" *ngFor="let list of result; let i=index;"> <div class="row"> <div class="col-md-3 col-sm-3 col-xs-12"> <div class="popular-courses"> <div class="post-media entry"> <div class="ribbon-wrapper-green"> <div class="ribbon-green">Featured</div></div><div class="img-holder"> <a routerLink="/courses/single/{{list?.course?.id}}"> <img *ngIf="list?.course?.course_image" src="{{StaticImageUrl}}{{list?.course?.course_image}}" alt="" class="img-responsive imgheight"> </a> </div></div></div></div><div class="min-height col-md-7 col-sm-7 col-xs-12"> <div class="about-module col-md-12 col-sm-12 col-xs-12"> <div class="width-full float-left"> <div class="float-left"> <span *ngIf="list?.course?.skill==='B'" class="label label-success">IDEAL FOR BEGINNERS</span> <span *ngIf="list?.course?.skill==='I'" class="label label-success">IDEAL FOR MEDIOCRES</span> <span *ngIf="list?.course?.skill==='A'" class="label label-success">IDEAL FOR EXPERTS</span> <span *ngIf="list?.course?.status===true" class="label label-success">Approved </span> <span *ngIf="list?.course?.status===false" class="label label-danger">Rejected </span> <span *ngIf="list?.course?.status===null" class="label label-warning">Pending</span> </div></div><div class="width-full float-left"> <a routerLink="/courses/single/{{list?.course?.id}}"> <h3>{{list?.course?.name}}</h3> </a> </div><p class="width-full float-left">{{list?.course?.overview}}</p></div><div class="col-lg-12 large-post-meta float-left width-full"> <span class="avatar"><a routerLink="/user-profile/{{list?.course?.user_id?.id}}"><img src="../../assets/upload/avatar_01.png" class="img-circle">{{list?.course?.user_id?.username}}</a></span> <small>&#124;</small> <span><a><i class="fa fa-clock-o"></i>{{list?.course?.video_duration}}Duration</a></span> <span><a><i class="fa fa-clock-o"></i>{{list?.course?.postDate | date}}</a></span> <small class="hidden-xs">&#124;</small> <span class="hidden-xs"><a><i class="fa fa-dollar"></i>{{list?.course?.actual_price}}</a></span> <small class="hidden-xs">&#124;</small> <span class="hidden-xs"><a [routerLink]="['/courses/single']"><i class="fa fa-users"></i>{{list?.course?.lectures}}lectures</a></span> <span *ngIf="list?.course?.skill==='A'" class="hidden-xs"><a><i class="fa fa-users"></i> Advanced Level</a></span> <span *ngIf="list?.course?.skill==='B'" class="hidden-xs"><a><i class="fa fa-users"></i> Begineer Level</a></span> <span *ngIf="list?.course?.skill==='I'" class="hidden-xs"><a><i class="fa fa-users"></i> Intermediate Level</a></span> <span class="hidden-xs"><a><i class="fa fa-users"></i> English</a></span> </div></div><div class="col-md-2 col-sm-2 col-xs-12 about-module-right"> <h2>${{list?.course?.actual_price}}</h2> <div class="rating-stars"> <rating ngModel="{{list?.course?.rating}}" [readonly]="true" titles="{{list?.course?.rating}}"></rating> <span>{{list?.course?.rating}}</span> </div><span class="ml5">(3,185 ratings)</span> </div></div></div><nav class="text-center"> <ul class=" pagination pagination-lg"> <li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link" onclick="topFunction()" (click)="courses(1)" aria-label="Previous"> First </a> </li><li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a class="page-link" onclick="topFunction()" (click)="courses(pager.currentPage - 1)" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span> </a> </li><li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage===page}" onclick="topFunction()" (click)="courses(page)"><a class="page-link">{{page}}</a></li><li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a class="page-link" onclick="topFunction()" (click)="courses(pager.currentPage + 1)" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a> </li><li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}"> <a class="page-link" onclick="topFunction()" (click)="courses(pager.totalPages)" aria-label="Next"> Last </a> </li></ul> </nav> </div></div></div></div></div></main></div>
+<app-loader></app-loader>
+<div class="wrapp-content slider">
+    <main class="">
+        <div class="container padding-bottom-10">
+            <div class="container-fluid homeslider-hide">
+                <div class="homeslider-hide bidSlider" *ngIf="Categories">
+                    <ngx-slick class="homeSlider" #slickModal="slick-modal" [config]="slideConfig">
+                        <div class="item" ngxSlickItem *ngFor="let category of Categories">
+                            <div class="image"> <a routerLink='/courses/{{category.id}}'> <img class="img"
+                                        src="{{catImageUrl}}{{category?.icon_Web_Home}}"
+                                        onError="this.src='../../assets/img/default_thumbnail.png'"> </a> </div>
+                            <div class="slide-overlay">
+                                <h4 class="card-title"> <a routerLink='/cat_courses/{{category.id}}'
+                                        tabindex="0">{{category?.name}}</a> </h4>
+                            </div>
+                        </div>
+                    </ngx-slick>
+                </div>
+                <div class="clearfix"></div>
+                <div class="">
+                    <div class="row radio-box">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <h4 class=""> Level </h4>
+                            <div class="radio"> <label class="checkbox-font"> <input type="radio" name="level"
+                                        checked=true (change)="checked1($event)">All Level </label> </div>
+                            <div class="radio"> <label class="checkbox-font"> <input type="radio" name="level"
+                                        (change)="checked2($event)">Beginners </label> </div>
+                            <div class="radio"> <label class="checkbox-font"> <input type="radio" name="level"
+                                        (change)="checked3($event)">Intermediate </label> </div>
+                            <div class="radio"> <label class="checkbox-font"> <input type="radio" name="level"
+                                        (change)="checked4($event)">Advance </label> </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <h4 class=""> Rating </h4>
+                            <div class="radio"> <label class="checkbox-font"> <input type="radio" name="rate"
+                                        checked=true (change)="checked9($event)">
+                                    <div class="rating-box"> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+                                            class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+                                            class="fas fa-star"></i> </div>All
+                                </label> </div>
+                            <div class="radio"> <label class="checkbox-font"> <input type="radio" name="rate"
+                                        (change)="checked5($event)">
+                                    <div class="rating-box"> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+                                            class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+                                            class="fas fa-star-half-alt"></i> </div>4.0 & up 5.0
+                                </label> </div>
+                            <div class="radio"> <label class="checkbox-font"> <input type="radio" name="rate"
+                                        (change)="checked6($event)">
+                                    <div class="rating-box"> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+                                            class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i> <i
+                                            class="far fa-star"></i> </div>3.0 & up 4.0
+                                </label> </div>
+                            <div class="radio"> <label class="checkbox-font"> <input type="radio" name="rate"
+                                        (change)="checked7($event)">
+                                    <div class="rating-box"> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+                                            class="fas fa-star-half-alt"></i> <i class="far fa-star"></i> <i
+                                            class="far fa-star"></i> </div>2.0 & up 3.0
+                                </label> </div>
+                            <div class="radio"> <label class="checkbox-font"> <input type="radio" name="rate"
+                                        (change)="checked8($event)">
+                                    <div class="rating-box"> <i class="fas fa-star"></i> <i
+                                            class="fas fa-star-half-alt"></i> <i class="far fa-star"></i> <i
+                                            class="far fa-star"></i> <i class="far fa-star"></i> </div>1.0 & up 2.0
+                                </label> </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <h4 class=""> Price </h4>
+                            <div class="radio"> <label class="checkbox-font"> <input type="radio" name="price"
+                                        checked=true (change)="checked10($event)">All </label> </div>
+                            <div class="radio"> <label class="checkbox-font"> <input type="radio" name="price"
+                                        (change)="checked11($event)">Paid </label> </div>
+                            <div class="radio"> <label class="checkbox-font"> <input type="radio" name="price"
+                                        (change)="checked12($event)">Free </label> </div>
+                        </div>
+                    </div>
+                    <div class="padding-top-10">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <h3 class="page-title-01 color-black margin-0">Filtered Courses</h3>
+                            </div>
+                            <div class="col-lg-12 text-right">
+                                <h4 class="found-lable">We Found{{total}}Courses</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="padding-bottom-10">
+                        <div class="">
+                            <div class="courses-div" *ngIf="total==0"> No Courses Found </div>
+                            <div class="courses-div" *ngFor="let list of result; let i=index;">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="popular-courses">
+                                            <div class="post-media entry">
+                                                <div class="ribbon-wrapper-green">
+                                                    <div class="ribbon-green">Featured</div>
+                                                </div>
+                                                <div class="img-holder"> <a
+                                                        routerLink="/courses/single/{{list?.course?.id}}"> <img
+                                                            *ngIf="list?.course?.course_image"
+                                                            src="{{StaticImageUrl}}{{list?.course?.course_image}}"
+                                                            alt="" class="img-responsive imgheight"> </a> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="min-height col-md-7 col-sm-7 col-xs-12">
+                                        <div class="about-module col-md-12 col-sm-12 col-xs-12">
+                                            <!-- <div class="width-full float-left">
+                                                <div class="float-left"> <span *ngIf="list?.course?.skill==='B'"
+                                                        class="label label-success">IDEAL FOR BEGINNERS</span> <span
+                                                        *ngIf="list?.course?.skill==='I'"
+                                                        class="label label-success">IDEAL FOR MEDIOCRES</span> <span
+                                                        *ngIf="list?.course?.skill==='A'"
+                                                        class="label label-success">IDEAL FOR EXPERTS</span> <span
+                                                        *ngIf="list?.course?.status===true"
+                                                        class="label label-success">Approved </span> <span
+                                                        *ngIf="list?.course?.status===false"
+                                                        class="label label-danger">Rejected </span> <span
+                                                        *ngIf="list?.course?.status===null"
+                                                        class="label label-warning">Pending</span> </div>
+                                            </div> -->
+                                            <div class="width-full float-left"> <a
+                                                    routerLink="/courses/single/{{list?.course?.id}}">
+                                                    <h3>{{list?.course?.name}}</h3>
+                                                </a> </div>
+                                            <p class="width-full float-left">{{list?.course?.overview}}</p>
+                                        </div>
+
+                                        <div class="col-lg-12 couser-lavel">
+                                                <span *ngIf="list?.course?.skill==='A'" class="hidden-xs"><a><i
+                                                    class="fa fa-users"></i> Advanced Level</a></span> <span
+                                            *ngIf="list?.course?.skill==='B'" class="hidden-xs"><a><i
+                                                    class="fa fa-users"></i> Begineer Level</a></span> <span
+                                            *ngIf="list?.course?.skill==='I'" class="hidden-xs"><a><i
+                                                    class="fa fa-users"></i> Intermediate Level</a></span>
+                                                    
+                                                    
+                                                <span class="hidden-xs"><a
+                                                        [routerLink]="['/courses/single']"><i
+                                                            class="fa fa-users"></i> {{list?.course?.lectures}} lectures</a></span>
+                                                
+                                                
+
+                                                            <span><a><i
+                                                                class="fa fa-clock-o"></i>{{list?.course?.video_duration}}Duration</a></span>
+
+
+                                        </div>
+
+
+
+                                        <div class="col-lg-12 large-post-meta float-left width-full"> <span
+                                                class="avatar"><a
+                                                    routerLink="/user-profile/{{list?.course?.user_id?.id}}"><img
+                                                        src="../../assets/upload/avatar_01.png"
+                                                        class="img-circle">By {{list?.course?.user_id?.username}} </a></span>
+                                            <small>&#124;</small> 
+                                            <span><a><i
+                                                        class="fa fa-clock-o"></i>{{list?.course?.postDate | date}}</a></span>
+                                            <small class="hidden-xs">&#124;</small> 
+                                            
+                                            <span class="hidden-xs"><a><i
+                                                        class="fa fa-dollar"></i>$ {{list?.course?.actual_price}}</a></span>
+                                            <small class="hidden-xs">&#124;</small>
+
+
+                                             <span
+                                                class="hidden-xs"><a><i class="fa fa-users"></i> English</a></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12 about-module-right">
+                                        <h2>${{list?.course?.actual_price}}</h2>
+                                        <div class="rating-stars">
+                                            <rating ngModel="{{list?.course?.rating}}" [readonly]="true"
+                                                titles="{{list?.course?.rating}}"></rating>
+                                            <span>{{list?.course?.rating}}</span>
+                                        </div><span class="ml5">(3,185 ratings)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <nav class="text-center">
+                                <ul class=" pagination pagination-lg">
+                                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a
+                                            class="page-link" onclick="topFunction()" (click)="courses(1)"
+                                            aria-label="Previous"> First </a> </li>
+                                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===1}"> <a
+                                            class="page-link" onclick="topFunction()"
+                                            (click)="courses(pager.currentPage - 1)" aria-label="Previous"> <span
+                                                aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
+                                        </a> </li>
+                                    <li class="page-item" *ngFor="let page of pager.pages"
+                                        [ngClass]="{active:pager.currentPage===page}" onclick="topFunction()"
+                                        (click)="courses(page)"><a class="page-link">{{page}}</a></li>
+                                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}">
+                                        <a class="page-link" onclick="topFunction()"
+                                            (click)="courses(pager.currentPage + 1)" aria-label="Next"> <span
+                                                aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span> </a>
+                                    </li>
+                                    <li class="page-item" [ngClass]="{disabled:pager.currentPage===pager.totalPages}">
+                                        <a class="page-link" onclick="topFunction()" (click)="courses(pager.totalPages)"
+                                            aria-label="Next"> Last </a> </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
