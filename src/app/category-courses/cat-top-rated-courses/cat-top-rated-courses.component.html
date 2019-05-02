@@ -1,1 +1,93 @@
-<div class="content-box-01 padding-top-10"> <div class="container-fluid1"> <div *ngIf="loaded" class="row"> <div class="col-lg-12 text-center"> <h3 class="page-title-01 img-bg img-bg-3 color-white">Top Rated Courses in{{category?.name}}</h3> </div></div></div></div><div class="content-box-01 padding-bottom-10"> <div class="container-fluid1"> <div *ngIf="loaded" class="row"> <div class="col-lg-12 bidSlider"> <ngx-slick class="product-list slick-bids1" #slickModal="slick-modal" [config]="slideConfig"> <li class="product-list__item item" ngxSlickItem *ngFor="let data of topRatedCourses?.courses; let i=index;"> <a routerLink="/courses/single/{{data?.course?.id}}"> <figure class="product-list__img"> <figure class="imghvr-hinge-up product-list__img"> <img *ngIf="data?.course?.course_image" src="{{ImageUrl}}{{data?.course?.course_image}}" alt="" class="img-responsive" onError="this.src='../../assets/img/default_thumbnail.png'"> <figcaption> <p>Includes:</p><p><i class="fa fa-file-video-o"></i> &nbsp; 27.5 hours on-demand video</p><p><i class="fa fa-book"></i> &nbsp; 7 Articles</p><p><i class="fa fa-universal-access"></i> &nbsp; Full lifetime access</p><p><i class="fa fa-bolt"></i> &nbsp;&nbsp; Assignments</p><p><i class="fa fa-certificate"></i> &nbsp; Certificate of Completion</p></figcaption> </figure> </figure> </a> <div class="product-list__content"> <a class="product-list__category" routerLink="/courses/single/{{data?.course?.id}}">{{data?.course?.name.slice(0, 50)}}<a *ngIf="data?.course?.name.length>60"> ... </a> <div *ngIf="data?.course?.name.length<40"> <br></div></a> <div class="slider-rating-bar"> <div class="pull-left"> <ul class="product-list__star-list"> <li class="star-icons-li"> <a href=""> <i class="fa fa-star" aria-hidden="true"></i> </a> </li><li class="star-icons-li"> <a href=""> <i class="fa fa-star" aria-hidden="true"></i> </a> </li><li class="star-icons-li"> <a href=""> <i class="fa fa-star" aria-hidden="true"></i> </a> </li><li class="star-icons-li"> <a href=""> <i class="fa fa-star" aria-hidden="true"></i> </a> </li><li class="star-icons-li"> <a href=""> <i class="fa fa-star" aria-hidden="true"></i> </a> </li></ul> </div><div class="pull-right linethrough"> ${{data?.course?.actual_price}}</div><div class="pull-right hoverfont" *ngIf="data?.course?.discounted_price !=null"> ${{data?.course?.discounted_price}}</div></div><div class="row btn-position-r"> <a routerLink="/user-profile/{{data?.course?.user_id?.id}}" *ngIf="data?.course?.user_id.first_name && data?.course?.user_id.last_name" class="col-md-9 col-sm-9 col-lg-9 col-xs-9 product-list__category">{{data?.course?.user_id.first_name}}{{data?.course?.user_id.last_name}}</a> <a *ngIf="data?.course?.actual_price>0" (click)="buyNowClick(i, data?.course?.id)" type="button" class="btn btn1 bid  btn-position-a">Buy Now</a> </div></div><div class="product-list__item-info"> <a class="material-icons wishlist" title="Add to wishlist"> <div *ngIf="data?.course.inWishList==true" (click)="onclick(i,data?.course?.id,data?.course.inWishList)"><i class="fas fa-heart"></i></div><div *ngIf="data?.course.inWishList==false" (click)="onclick(i,data?.course?.id,data?.course.inWishList)"><i class="far fa-heart"></i></div></a> <a class="wishlist material-icons" title="Add to Cart" (click)="openDialog2(i, data?.course?.id)">add_shopping_cart</a> <a *ngIf="data?.course?.actual_price<=0" (click)="enrollCourse(i, data?.course?.id)" type="button" class="btn btn1">Enroll Now</a> <button class="btn btn1 bid" type="button">Accept Offer </button> </div></li></ngx-slick> </div></div><div *ngIf="loaded" class="row"> <div class="col-lg-12 text-center"> <a (click)="goToTopRatedCourses()" class="btn-01">See more</a> </div></div></div></div>
+<div class="content-box-01 padding-top-10">
+    <div class="container-fluid1">
+        <div *ngIf="loaded" class="row">
+            <div class="col-lg-12 text-center">
+                <h3 class="page-title-01 img-bg img-bg-3 color-white">Top Rated Courses in{{category?.name}}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-box-01 padding-bottom-10">
+    <div class="container-fluid1">
+        <div *ngIf="loaded" class="row">
+            <div class="col-lg-12 bidSlider">
+                <ngx-slick class="product-list slick-bids1" #slickModal="slick-modal" [config]="slideConfig">
+                    <li class="product-list__item item" ngxSlickItem
+                        *ngFor="let data of topRatedCourses?.courses; let i=index;"> <a
+                            routerLink="/courses/single/{{data?.course?.id}}">
+                            <figure class="product-list__img">
+                                <figure class="imghvr-hinge-up product-list__img"> <img
+                                        *ngIf="data?.course?.course_image"
+                                        src="{{ImageUrl}}{{data?.course?.course_image}}" alt="" class="img-responsive"
+                                        onError="this.src='../../assets/img/default_thumbnail.png'">
+                                    <figcaption>
+                                        <p>Includes:</p>
+                                        <p><i class="fa fa-file-video-o"></i>27.5 hours on-demand video</p>
+                                        <p><i class="fa fa-book"></i>7 Articles</p>
+                                        <p><i class="fa fa-universal-access"></i>Full lifetime access</p>
+                                        <p><i class="fa fa-bolt"></i>Assignments</p>
+                                        <p><i class="fa fa-certificate"></i>Certificate of Completion</p>
+                                    </figcaption>
+                                </figure>
+                            </figure>
+                        </a>
+                        <div class="product-list__content"> <a class="product-list__category name-h"
+                                routerLink="/courses/single/{{data?.course?.id}}">{{data?.course?.name.slice(0, 50)}}<a
+                                    *ngIf="data?.course?.name.length>60"> ... </a>
+                                <div *ngIf="data?.course?.name.length<40"> <br></div>
+                            </a>
+                            <a routerLink="/user-profile/{{data?.course?.user_id?.id}}"
+                            *ngIf="data?.course?.user_id.first_name && data?.course?.user_id.last_name"
+                            class="product-list__category">By {{data?.course?.user_id.first_name}}{{data?.course?.user_id.last_name}}</a>
+
+
+                            <div class="slider-rating-bar">
+                                <div class="pull-left">
+                                    <ul class="product-list__star-list">
+                                        <li class="star-icons-li"> <a href=""> <i class="fa fa-star"
+                                                    aria-hidden="true"></i> </a> </li>
+                                        <li class="star-icons-li"> <a href=""> <i class="fa fa-star"
+                                                    aria-hidden="true"></i> </a> </li>
+                                        <li class="star-icons-li"> <a href=""> <i class="fa fa-star"
+                                                    aria-hidden="true"></i> </a> </li>
+                                        <li class="star-icons-li"> <a href=""> <i class="fa fa-star"
+                                                    aria-hidden="true"></i> </a> </li>
+                                        <li class="star-icons-li"> <a href=""> <i class="fa fa-star"
+                                                    aria-hidden="true"></i> </a> </li>
+                                    </ul>
+                                </div>
+                                <div class="pull-right linethrough"> ${{data?.course?.actual_price}}</div>
+                                <div class="pull-right hoverfont" *ngIf="data?.course?.discounted_price !=null">
+                                    ${{data?.course?.discounted_price}}</div>
+                            </div>
+                            <div class="row btn-position-r"> 
+
+                                <div class="icons">
+                                        <a class="material-icons wishlist"
+                                        title="Add to wishlist">
+                                        <div *ngIf="data?.course.inWishList==true"
+                                            (click)="onclick(i,data?.course?.id,data?.course.inWishList)"><i
+                                                class="fas fa-heart"></i></div>
+                                        <div *ngIf="data?.course.inWishList==false"
+                                            (click)="onclick(i,data?.course?.id,data?.course.inWishList)"><i
+                                                class="far fa-heart"></i></div>
+                                    </a> <a class="wishlist material-icons" title="Add to Cart"
+                                        (click)="openDialog2(i, data?.course?.id)">add_shopping_cart</a>
+                                </div>
+
+                                <a *ngIf="data?.course?.actual_price>0" (click)="buyNowClick(i, data?.course?.id)"
+                                    type="button" class="btn btn1 bid  btn-position-a">Buy Now</a> </div>
+                        </div>
+                        <div class="product-list__item-info">  <a
+                                *ngIf="data?.course?.actual_price<=0" (click)="enrollCourse(i, data?.course?.id)"
+                                type="button" class="btn btn1">Enroll Now</a> <button class="btn btn1 bid"
+                                type="button">Accept Offer </button> </div>
+                    </li>
+                </ngx-slick>
+            </div>
+        </div>
+        <div *ngIf="loaded" class="row">
+            <div class="col-lg-12 text-center"> <a (click)="goToTopRatedCourses()" class="btn-01">See more</a> </div>
+        </div>
+    </div>
+</div>

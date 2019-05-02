@@ -2286,6 +2286,7 @@ ol li::before {
 
 .home-01 .product-list__item {
     width: 262px;
+    max-width: 204px;
     margin: 0 20px 10px;
     text-align: left
 }
@@ -7295,7 +7296,7 @@ countdown .countdown {
 }
 
 .star-icon:before {
-    top: -1px!important
+    top: -3px!important
 }
 
 .label-danger {
