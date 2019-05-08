@@ -6,7 +6,7 @@
             #f="ngForm" novalidate>
             <div class="card">
                 <div class="card-header text-center margin-bottom-0" data-background-color="rose">
-                    <h4 class="card-title"><label class="font"> Sign in to Your Account</label></h4>
+                    <h4 class="card-title"><label class="font"> Sign In to Your Account</label></h4>
                     <div class="social-line"> 
                         <a class="btn btn-just-icon btn-simple" (click)="signInWithFB()"> 
                             <!-- <i class="fab fa-facebook-square"></i>  -->
@@ -41,16 +41,20 @@
                             <strong>required</strong> </mat-error>
                     </mat-form-field>
                 </div>
-                <div class="checkpad text-left float-left col-md-6 col-sm-6 col-xs-12">
-                    <mat-checkbox [(checked)]="model">Stay signed in</mat-checkbox> <a class="font2 forgot-pass"
+                <div class="text-left float-left col-md-6 col-sm-6 col-xs-12">
+                    
+                        <!-- <mat-slide-toggle>Stay signed in</mat-slide-toggle> -->
+
+                    <mat-checkbox [(checked)]="model">Stay signed in</mat-checkbox> 
+                    <a class="font2 forgot-pass"
                         (click)="openDialog()">Forgot Password? </a>
                 </div>
                 <div class="form-group margin-0 col-md-6 col-sm-6 col-xs-12" [ngClass]="{'has-error': f.submitted}">
                     <app-recapcha class="pull-right recapcha"></app-recapcha>
                 </div>
                 <div class="footer text-center"> <button type="submit" class="button signup-btn" tabindex=3> Sign
-                        in</button> <label class="font1"> Don't have an account? <a class="font1 color-blue"
-                            [routerLink]="['/signup']"> Sign up </a></label> 
+                        In</button> <label class="font1"> Don't have an account? <a class="font1 color-blue"
+                            [routerLink]="['/signup']"> Sign Up </a></label> 
                             <div class="term-privacy text-center">
                                     <a  target="_blank" href="/terms">Terms of Service </a>
                                     <a  target="_blank" href="/privacy-policy">Privacy Policy</a>

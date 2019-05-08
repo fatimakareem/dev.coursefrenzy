@@ -19,6 +19,7 @@ import { RecapchaComponent } from '../recapcha/recapcha.component';
 import { ViewChild } from '@angular/core';
 import { RecapchaService } from '../recapcha/recapcha.service';
 
+
 const EMAIL_REGEX = '^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
 
 @Component({
@@ -26,6 +27,7 @@ const EMAIL_REGEX = '^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
+
 
 export class LoginComponent implements OnInit {
   @ViewChild(RecapchaComponent) captcha: RecapchaComponent;

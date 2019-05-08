@@ -57,7 +57,8 @@
 .terms-wrapper h2 {
     font-size: 22px;
     font-weight: 700;
-    margin: 0
+    margin: 0;
+    line-height: 32px;
 }
 
 .terms-wrapper h5 {
@@ -163,11 +164,13 @@
 }
 
 .sh-signup-form-fix .mat-form-field-appearance-legacy .mat-form-field-label {
-    color: rgba(0, 0, 0, .54);
+    color: rgba(0, 0, 0, .54) !important;
     font-size: 16px;
     font-weight: 600
 }
-
+.sh-signup-form-fix.mat-form-field.mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker, .mat-form-field.mat-form-field-invalid .mat-form-field-label.mat-accent{
+    color: rgba(0, 0, 0, .54) !important;
+}
 .sh-signup-form-fix .mat-form-field-underline {
     background-color: rgba(0, 0, 0, .42)
 }
@@ -180,8 +183,9 @@
 
 .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
 .sh-signup-form-fix .mat-input-element.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label {
-    -webkit-transform: translateY(-22px) scale(.88) perspective(100px) translateZ(0)!important;
-    transform: translateY(-22px) scale(.88) perspective(100px) translateZ(0)!important
+    -webkit-transform: translateY(-32px) scale(.88) perspective(100px) translateZ(0)!important;
+    transform: translateY(-32px) scale(.88) perspective(100px) translateZ(0)!important;
+    color: blue !important;
 }
 
 .sh-signup-form-fix .mat-hint {
@@ -216,11 +220,13 @@
 }
 
 .sh-signup-form-fix .mat-input-element {
-    font-size: 20px;
+    font-size: 24px;
     text-align: left!important;
     color: #000
 }
-
+.sh-signup-form-fix .mat-form-field-appearance-legacy .mat-form-field-label{
+    top: 30px;
+}
 #cover {
     position: fixed;
     height: 100%;
@@ -5075,7 +5081,7 @@ form:after {
 }
 
 .wrapp-footer {
-    background-color: #353537;
+    background-color: #000;
     position: relative;
     z-index: 2
 }
@@ -5117,7 +5123,7 @@ form:after {
 }
 
 .widget-title {
-    font-size: 25px;
+    font-size: 28px;
     line-height: 20px;
     color: #fff;
     font-weight: 600;
@@ -5145,9 +5151,9 @@ form:after {
 }
 
 .widget-list li a {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 30px;
-    color: #ddd
+    color: #777
 }
 
 .footer-stores-img {
@@ -5169,7 +5175,7 @@ form:after {
 }
 
 .widget-list li a:hover {
-    color: #f80000
+    color: #fff;
 }
 
 .copy-info,
@@ -6172,10 +6178,18 @@ app-admin-panel:after {
 .list-social li a i {
     text-align: center;
     border-radius: 100%;
-    line-height: 30px;
-    margin: 0 3px;
-    color: #c00;
-    font-size: 20px
+    line-height: 1;
+    /* margin: 0 3px; */
+    color: #777;
+    font-size: 20px;
+    padding: 10px;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    -moz-transition: .5s;
+    transition: .5s;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
 }
 
 .list-social li:hover {
@@ -6223,9 +6237,9 @@ app-admin-panel:after {
     color: #c00
 }
 
-.list-social li.pinterest:hover a i {
+/* .list-social li.pinterest:hover a i {
     background: #c00
-}
+} */
 
 .list-social li.linked-in:hover a {
     color: #007bb5
@@ -6234,10 +6248,18 @@ app-admin-panel:after {
 .list-social li.linked-in:hover a i {
     background: #007bb5
 }
-
-.list-social li i {
-    width: 30px
+.list-social li a:hover .fa-pinterest-p{
+    background: #c92228!important;
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+    color: #fff!important;
 }
+/* .list-social li i {
+    width: 30px
+} */
 
 .list-social li span {
     width: calc(100% - 37px)
@@ -6501,7 +6523,8 @@ app-admin-panel {
 }
 
 .wrapp-footer .list-social li a {
-    color: #ddd!important
+    color: #777!important;
+    font-size: 18px;
 }
 
 .darkheader .cartmenu .chat {
@@ -7147,7 +7170,7 @@ app-admin-panel {
 .download-here a img, .footer-stores-img a img {
     width: 123px;
     height: 37px;
-    margin-left: 2px;
+    /* margin-left: 2px; */
 }
 
 .mat-checkbox-checked.mat-accent .mat-checkbox-background,
@@ -7360,7 +7383,9 @@ figcaption p i {
 .margin-left-31 {
     margin-left: 31px
 }
-
+.margin-right-31 {
+    margin-right: 31px
+}
 .list-user:before {
     content: '';
     position: absolute;
@@ -7846,8 +7871,8 @@ figcaption p i {
     color: #fff
 }
 
-.margin-t-b-10 {
-    margin: 10px 0
+.recap-margin {
+    margin: -14px 0 10px;
 }
 
 .margin-t-b20 {
@@ -10425,7 +10450,7 @@ p {
 }
 
 .frenzy-link li a i {
-    color: #c00;
+    color: #777;
     padding-right: 10px
 }
 
